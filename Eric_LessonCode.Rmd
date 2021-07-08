@@ -1,0 +1,335 @@
+---
+title: "Pop Gen Lesson"
+author: "Nikko"
+date: "7/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+##Pop Gen Lesson
+
+Setup
+```{r}
+library(knitr)
+library(rentrez)
+library(pegas)
+library(stringr)
+library(plyr)
+library(geomedb)
+library(strataG)
+```
+
+##Import data
+
+```{r}
+dat.rnt <-entrez_search(db="popset", term="322367799")
+dat.raw <-entrez_fetch("popset", id=dat.rnt$ids,rettype="fasta")
+write(dat.raw,file="dog.fasta")
+dog.dat <-read.FASTA("dog.fasta")
+dog.dat
+```
+
+##Edit names
+```{r}
+nms <-names(dog.dat)
+nms <-sapply(nms, function(x) strsplit(x,"")[1][8])
+names(dog.dat) <- nms
+dog.dat
+```
+
+##Aligning data
+```{r}
+dog.aln <-muscle(dog.dat)
+image.DNAbin(dog.aln, cex.lab=.5)
+```
+
+##Select first 600 nucleotides
+```{r}
+dog.aln.sub <-dog.aln[,1:600]
+image.DNAbin(dog.aln.sub, cex.lab=.5)
+```
+##Zoom
+```{r}
+image.DNAbin(dog.aln.sub[1:3,150:200], cex.lab=.5)
+```
+##Number of segregating sites -> SNPs
+```{r}
+dog.sites <-seg.sites(dog.aln.sub)
+dog.sites
+```
+##Count
+```{r}
+dog.ss <-length(dog.sites)
+dog.ss
+```
+##Choose a random sequence and check the differences between them
+```{r}
+seqs <-sample(1:17, 2)
+seqs
+```
+
+##How many segregating sites are there?
+```{r}
+ss <-seg.sites(dog.aln.sub[seqs,])
+ss
+```
+```{r}
+ss_tot <-length(seg.sites(dog.aln.sub[seqs,]))
+ss_tot
+```
+##Nucleotide differences between the two sequences
+```{r}
+dog.ndiv <-nuc.div(dog.aln.sub)
+dog.ndiv
+```
+##Average number of differences per sequence
+```{r}
+dog.pi <-ncol(dog.aln.sub)*dog.ndiv
+dog.pi
+```
+##Haplotype
+```{r}
+dog.hap <-haplotype(dog.aln.sub)
+dog.hap
+```
+17 sequences and 12 different haplotypes
+
+##Haplotype Diversity
+```{r}
+dog.hd <-hap.div(dog.aln.sub)
+dog.hd
+```
+##Phylogentic Tree
+```{r}
+dog.dist <-dist.dna(dog.aln.sub) #calculate the distance matrix
+plot(nj(dog.dist), type="phylo", cex=.8) #plot a "neighbor joining" tree
+add.scale.bar(x=0.005, y=1, length=0.0016)
+```
+##A Network
+
+```{r}
+net <-haploNet(dog.hap)
+fq <-attr(net,"freq")
+plot(net, size=fq, threshold=0, cex=.5)
+```
+##Table
+```{r}
+sample.no <-attr(dog.hap, "index")
+breed.by.haplo <-sapply(sample.no, function(x) rownames(dog.aln.sub)[x])
+sorted <-sapply(breed.by.haplo, paste, collapse=" ")
+haplo <-as.roman (1:12)
+kable(data.frame(Haplotype=as.character(haplo), Breed=sorted))
+```
+##GEOME
+
+#Query the metadata
+
+```{r}
+neralb_meta <- queryMetadata(
+  entity="Sample",
+  query="genus = Nerita AND specificEpithet = albicilla",
+  select="Event")
+```
+
+```{r}
+neralb_CT_meta <- queryMetadata(
+  entity="Sample",
+  query = "genus = Nerita AND specificEpithet = albicilla AND decimalLongitude: [91 TO 162] AND decimalLatitude: [-11 TO 17] AND _exists_:sequence",
+  select="Event")
+View(neralb_CT_meta$Sample)
+
+```
+```{r}
+View(neralb_CT_meta$Event)
+```
+
+```{r}
+#subset the event metadata
+event_info <-neralb_CT_meta$Event[,c("locality", "country", "decimalLatitude", "decimalLongitude", "eventID")]
+kable(event_info)
+```
+
+##Lumping and Cleaning Locality Names
+```{r}
+#Lump all Malaysia pop. into "Sarawak"
+neralb_CT_meta$Event$locality[which(neralb_CT_meta$Event$country == "Malaysia")] <- "Sarawak"
+#Change USA to Guam
+neralb_CT_meta$Event$country[which(neralb_CT_meta$Event$country == "USA")] <- "Guam"
+#lump all Mindoro pop. together
+neralb_CT_meta$Event$locality[grep("Mindoro", neralb_CT_meta$Event$locality)] <-"Mindoro"
+#lump all Bohol pop. together
+neralb_CT_meta$Event$locality[grep("Bohol", neralb_CT_meta$Event$locality)] <-"Bohol"
+#remove commas from locality names
+neralb_CT_meta$Event$locality<-str_replace_all(neralb_CT_meta$Event$locality, ",","")
+#remove spaces from locality and country names
+neralb_CT_meta$Event$locality<-str_replace_all(neralb_CT_meta$Event$locality, " ", "_")
+neralb_CT_meta$Event$country<-str_replace_all(neralb_CT_meta$Event$country, " ", "_")
+#lump the western Thai pop, into "Andaman Sea"
+neralb_CT_meta$Event$locality[
+  which(as.numeric(neralb_CT_meta$Event$decimalLongitude) < 100)
+] <- "Andman Sea"
+
+event_info <- neralb_CT_meta$Event[,c("locality", "country", "decimalLatitude", "decimalLongitude", "eventID")]
+```
+
+```{r}
+listLoci()
+```
+##Downloading actual data instead of metadata
+```{r}
+neralb_CT_CO1 <- querySanger(
+  query = "genus = Nerita AND specificEpithet = albicilla AND decimalLongitude: [91 TO 162] AND decimalLatitude: [-11 TO 17] AND _exists_:sequence", locus = "CO1")
+neralb_CT_CO1
+```
+##Pull out sample names from fasta file and overwrite the names with shorter values
+```{r}
+names(neralb_CT_CO1) <- str_replace(string=names(neralb_CT_CO1), 
+                                    pattern=".+\\[tissueID = (.+?)\\].+", replacement = "\\1")
+#missing_metadata <-setdiff(names(neralb_CT_CO1), #neralb_CT_meta$Sample$materialSampleID)
+```
+
+##Sequence Alignment
+#Need to align the data to ensure that each site is homologous
+```{r}
+#neralb_CT_CO1 <-as.matrix(neralb_CT_CO1)
+neralb_CT_CO1 <- muscle(neralb_CT_CO1)
+image.DNAbin(neralb_CT_CO1)
+```
+```{r}
+image.DNAbin(neralb_CT_CO1[1:20, 350:400])
+```
+##Merging Metadata with Genetic Data
+```{r}
+neralb_flat <- join (neralb_CT_meta$Sample, neralb_CT_meta$Event, by ="eventID")
+head(neralb_flat$materialSampleID)
+```
+
+```{r}
+head(rownames(neralb_CT_CO1))
+neralb_flat <-neralb_flat[order(neralb_flat$materialSampleID),]
+neralb_CT_CO1 <- neralb_CT_CO1[order(rownames(neralb_CT_CO1)),]
+```
+
+##Haplotype Network
+```{r}
+#List of populations that were sampled with the locality and country name
+pop <- paste(neralb_flat$country, neralb_flat$localityl,sep="_")
+
+d <- dist.dna(neralb_CT_CO1)
+h <- pegas:: haplotype(neralb_CT_CO1)
+h <- sort (h, what="label")
+
+#Create network
+net <- pegas::haploNet(h)
+
+#Make a table of which haplotypes occur in which populations
+i <- stack(setNames(attr(h,"index"), rownames(h)))
+i <- i[order(i$values),]
+ind.hap <- table(hap=i$ind, pop=pop)
+
+#Make a second table that distinguishes Indian Ocean vs. Pacific Ocean pop.
+pop2 <- pop
+
+#Change all entries with "Thailand_Andaman Sea" to "Indian Ocean"
+pop2[which(pop2=="Thailand_Andaman Sea")] <- "Indian Ocean"
+#Change the rest to "Pacific Ocean"
+pop2[which(pop2!="Indian Ocean")] <- "Pacific Ocean"
+#make the table
+ind.hap2 <- table(hap=i$ind, pop=pop2)
+
+#play with scale.ratio to get appropriate branch lengths
+plot(net,size=attr(net, "freq"), scale.ratio=2, pie=ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
+
+#legend("topleft", colnames(ind.hap), col-rainbow(ncol(ind.hap)), pch=19, ncol=2)
+```
+##If the resulting figure doesn't look good - try this program called PopArt
+
+```{r}
+hapseqs <-h[] #pull out the DNAbin object from the haplotype object
+#write this to nexus format
+write.nexus.data(hapseqs,
+                 file="neralb_haplotypes.nex",
+                 interleaved=F)
+#write both haplotype tables to .csv
+write.csv(ind.hap,
+          file="neralb_table.csv",
+          quote=F)
+write.csv(ind.hap2,
+          file="neralb_table_IP.csv",
+          quote=F)
+```
+#Unsure of PopArt
+
+##Diversity Statistics
+
+#Haplotypes and Haplotype Diversity
+
+#Diversity = 1)richness: how many different types -> haplotypes, 2) evenness or how they are distributed
+
+#Haplotype diversity expresses the probability they would be different haplotypes
+
+```{r}
+#Create a copy of our dataset
+neralb_CT_CO1_b <- neralb_CT_CO1
+rownames(neralb_CT_CO1_b) <- pop
+stratastat <-function(x,pop=pop,fun=nuc.div){
+  #this function will calculate stats for a DNAbin object
+  #(x), stratified across pop. given in pop.
+  #Some functions this will work with: nuc.div()
+  #theta.s(), tatjima.test() from pegas, FusFs(), exptdHet() from strataG,
+  stats <- NULL
+  for(p in unique(pop)){
+    stat<-fun(x[grep(p,rownames(x)),])
+    stats<-c(stats,stat)
+  }
+names(stats)<-unique(pop)
+return(stats)
+}
+
+#Try it out
+hapdivs <-stratastat(neralb_CT_CO1_b, pop=pop, fun=hap.div)
+hapdivs
+```
+
+#Nucleotide Diversity
+```{r}
+nucdivs<-stratastat(neralb_CT_CO1_b, pop=pop, fun=nuc.div)
+nucdivs
+```
+#Convert our data to be used by StrataG -> double check calcs done by Pegas
+
+```{r}
+neralb_g <-sequence2gtypes(neralb_CT_CO1, strata=pop)
+neralb_g <-labelHaplotypes(neralb_g)
+
+neralb_g
+```
+```{r}
+samples <- summary(neralb_g$gtypes)$strata.smry[,1]
+haplotypes <- summary(neralb_g$gtypes)$strata.smry[,3]
+diversities<-cbind("#Samples" = samples, "$Haplotypes" = haplotypes, "Nucleotide Diversity" = nucdivs, "Haplotype Diversity" = hapdivs)
+kable(diversities, digits=3)
+```
