@@ -6,49 +6,49 @@ output: html_document
 ---
 
 ##Set up
+
 ```{r}
 library(knitr)
 library(rentrez)
 library(pegas)
-library(stringr)
+library(tidyverse)
 library(plyr)
 library(geomedb)
 library(strataG)
 ```
-##Query metadata
-#Just looked through general longitude and latitudes to get majority of the data
-```{r}
-holothuria_meta <- queryMetadata(
-  entity = "Sample",
-  query = "genus = Holuthuria AND specificEpithet = atra AND decimalLongitude: [-178 TO 179] AND decimalLatitude: [-28 TO 28] AND _exists_:sequence",
-  select="Event")
-View(holothuria_meta$Event)
-View(holothuria_meta$Sample)
+# Query metadata
 
-#No metadata seen? Maybe it hasn't loaded yet? Maybe it's my internet?
-#Too much data I tried to load?
+Just looked through general longitude and latitudes to get majority of the data
+
+```{r}
+holothuria_metadata <- queryMetadata(
+  entity = "Sample",
+  query = "genus = Holothuria AND specificEpithet = atra AND _exists_:sequence",
+  select = "Event")
+View(holothuria_metadata$Event)
+View(holothuria_metadata$Sample)
+
+holothuria_flat <- left_join(holothuria_metadata$Sample, holothuria_metadata$Event, by = "eventID")
 ```
 
-##Subset the metadata
+## Subset the metadata
+
 ```{r}
-holothuria_event_info <-holothuria_meta$Event[,c("locality", "country", "decimalLatitude", "decimalLongitude", "eventID")]
+holothuria_event_info <-holothuria_metadata$Event[,c("locality", "country", "decimalLatitude", "decimalLongitude", "eventID")]
 kable(holothuria_event_info)
 ```
-##Query FASTA
+
+
+# Query FASTA
+
 ```{r}
 listLoci()
 ```
 
 ```{r}
-holothuria_CO1 <- querySanger(
-  query = "genus = Holuthuria AND specificEpithet = atra AND decimalLongitude: [-178 TO 179] AND decimalLatitude: [-28 TO 28] AND _exists_:sequence", locus = "CO1")
+holothuria_CO1 <- querySanger(query = "genus = Holothuria AND specificEpithet = atra AND _exists_:sequence", 
+                              locus = "CO1")
 holothuria_CO1
 ```
-#Maybe my search is too broad?
-#Trying to shorten search
-```{r}
-holothuria_CO1 <- querySanger(
-  query = "genus = Holuthuria AND specificEpithet = atra AND decimalLongitude: [-178 TO -100] AND decimalLatitude: [-28 TO 5] AND _exists_:sequence", locus = "CO1")
-holothuria_CO1
 
-```
+
