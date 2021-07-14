@@ -71,25 +71,33 @@ holothuria_CO1 <- muscle(holothuria_CO1)
 image.DNAbin(holothuria_CO1)
 ```
 
-#150 to 200 looks interesting...
+150 to 200 looks interesting...
 ```{r}
 image.DNAbin(holothuria_CO1[1:20, 150:200])
 ```
 
-#LOL maybe not... let's try something else
+Let's trim the missing parts of the Skillings sequences
+
 ```{r}
-image.DNAbin(holothuria_CO1[1:20, 200:250])
-#Not a lot of variation from 1:20
+image.DNAbin(holothuria_CO1[,60:482])
+
+holothuria_CO1 <- holothuria_CO1[,60:482]
+
 ```
 
 ##Merging metadata with genetic data
 ```{r}
 #Eric already did a left join earlier
 head(holothuria_flat$materialSampleID)
+
 ```
+
 ```{r}
 head(rownames(holothuria_CO1))
 ```
+
+Put the metadata in the same order as the genetic data.
+
 ```{r}
 holothuria_flat <- holothuria_flat[order(holothuria_flat$materialSampleID),]
 holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
@@ -98,7 +106,7 @@ holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
 ##Creating a haplotype network
 ```{r}
 #Make a list of populations that were sampled with locality and country names
-holothuria_pop <- paste(holothuria_flat$country, holothuria_flat$locality, sep = "_")
+holothuria_pop <- str_remove_all(holothuria_flat$locality,'\\"')
 a <- dist.dna(holothuria_CO1)
 b <- pegas::haplotype(holothuria_CO1)
 b <- sort(b, what="label")
@@ -112,5 +120,6 @@ c <-c[order(c$values),]
 holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
 
 #Skip distinguishing oceans for now?
-plot(net,size=attr(net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
+plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
 ```
+
