@@ -38,6 +38,12 @@ holothuria_event_info <-holothuria_metadata$Event[,c("locality", "country", "dec
 kable(holothuria_event_info)
 ```
 
+#Lumping and cleaning locality names
+```{r}
+#Lump Indonesia together
+holothuria_metadata$Event$locality[which(holothuria_metadata$Event$country == "Indonesia")] <- "Indonesia"
+#Uhh idk if that did anything let's just pause
+```
 
 # Query FASTA
 
@@ -51,4 +57,60 @@ holothuria_CO1 <- querySanger(query = "genus = Holothuria AND specificEpithet = 
 holothuria_CO1
 ```
 
-#test
+##Genetic data
+```{r}
+#Overwrite the names from the FASTA to have shorter values
+names(holothuria_CO1) <- str_replace(string=names(holothuria_CO1),
+                                     pattern=".+\\[tissueID = (.+?)\\].+", replacement = "\\1")
+```
+
+#Sequence alignment
+```{r}
+#Align the data to ensure that each site is homologous
+holothuria_CO1 <- muscle(holothuria_CO1)
+image.DNAbin(holothuria_CO1)
+```
+
+#150 to 200 looks interesting...
+```{r}
+image.DNAbin(holothuria_CO1[1:20, 150:200])
+```
+
+#LOL maybe not... let's try something else
+```{r}
+image.DNAbin(holothuria_CO1[1:20, 200:250])
+#Not a lot of variation from 1:20
+```
+
+##Merging metadata with genetic data
+```{r}
+#Eric already did a left join earlier
+head(holothuria_flat$materialSampleID)
+```
+```{r}
+head(rownames(holothuria_CO1))
+```
+```{r}
+holothuria_flat <- holothuria_flat[order(holothuria_flat$materialSampleID),]
+holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
+```
+
+##Creating a haplotype network
+```{r}
+#Make a list of populations that were sampled with locality and country names
+holothuria_pop <- paste(holothuria_flat$country, holothuria_flat$locality, sep = "_")
+a <- dist.dna(holothuria_CO1)
+b <- pegas::haplotype(holothuria_CO1)
+b <- sort(b, what="label")
+
+#Create the network
+holothuria_net <- pegas::haploNet(b)
+
+#Make a table of which haplotypes occur in which populations
+c <-stack(setNames(attr(b, "index"), rownames(b)))
+c <-c[order(c$values),]
+holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
+
+#Skip distinguishing oceans for now?
+plot(net,size=attr(net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
+```
