@@ -28,7 +28,7 @@ holothuria_metadata <- queryMetadata(
 View(holothuria_metadata$Event)
 View(holothuria_metadata$Sample)
 
-holothuria_flat <- left_join(holothuria_metadata$Sample, holothuria_metadata$Event, by = "eventID")
+
 ```
 
 ## Subset the metadata
@@ -40,9 +40,19 @@ kable(holothuria_event_info)
 
 #Lumping and cleaning locality names
 ```{r}
-#Lump Indonesia together
-holothuria_metadata$Event$locality[which(holothuria_metadata$Event$country == "Indonesia")] <- "Indonesia"
-#Uhh idk if that did anything let's just pause
+#Lump Halmahera samples together
+holothuria_metadata$Event$locality[grep("Halmahera",holothuria_metadata$Event$locality)] <- "Halmahera"
+holothuria_metadata$Event$locality <- str_remove_all(holothuria_metadata$Event$locality,'\\"')   %>% str_remove_all("[(,)]")
+
+#join Sample and Event tables
+holothuria_flat <- left_join(holothuria_metadata$Sample, holothuria_metadata$Event, by = "eventID")
+
+#remove samples from populations with n < 5
+holothuria_flat <- holothuria_flat %>% filter(locality != "Gardner") %>% filter(locality != "New Caledonia") %>% 
+            filter(locality != "Nusa Penida") %>% filter(locality != "Papua New Guinea") %>% 
+            filter(locality != "Rakata Krakatau Besar") %>% filter(locality != "Solomon Islands") %>% 
+            filter(locality != "Tile-tile Selayar") %>% filter(locality != "Yop T. Cenderwasih")
+
 ```
 
 # Query FASTA
@@ -68,6 +78,7 @@ names(holothuria_CO1) <- str_replace(string=names(holothuria_CO1),
 ```{r}
 #Align the data to ensure that each site is homologous
 holothuria_CO1 <- muscle(holothuria_CO1)
+
 image.DNAbin(holothuria_CO1)
 ```
 
@@ -85,28 +96,20 @@ holothuria_CO1 <- holothuria_CO1[,60:482]
 
 ```
 
-##Merging metadata with genetic data
-```{r}
-#Eric already did a left join earlier
-head(holothuria_flat$materialSampleID)
-
-```
-
-```{r}
-head(rownames(holothuria_CO1))
-```
-
-Put the metadata in the same order as the genetic data.
+Put the metadata in the same order as the genetic data, and only keep the sequences that are still found in the metadata after we 
+removed the ones from pops with n < 5
 
 ```{r}
 holothuria_flat <- holothuria_flat[order(holothuria_flat$materialSampleID),]
+holothuria_CO1 <- holothuria_CO1[which(rownames(holothuria_CO1) %in% holothuria_flat$materialSampleID),]
 holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
 ```
 
 ##Creating a haplotype network
 ```{r}
 #Make a list of populations that were sampled with locality and country names
-holothuria_pop <- str_remove_all(holothuria_flat$locality,'\\"')
+holothuria_pop <- holothuria_flat$locality
+
 a <- dist.dna(holothuria_CO1)
 b <- pegas::haplotype(holothuria_CO1)
 b <- sort(b, what="label")
@@ -130,49 +133,53 @@ plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo
 ```{r}
 #Create a copy of dataset
 holothuria_CO1_copy <- holothuria_CO1
-rownames(holothuria_CO1_copy) <-holothuria_pop
-stratastat<-function(x,holothuria_pop=holothuria_pop, fun=nuc.div){
+rownames(holothuria_CO1_copy) <- holothuria_pop
+stratastat<-function(x,pop=pop, fun=nuc.div){
   stats<-NULL
-  for(p in unique(holothuria_pop)){
+  for(p in unique(pop)){
+    print(p)
     stat<-fun(x[grep(p,rownames(x)),])
+    stats <- c(stats,stat)
   }
   
   names(stats)<-unique(holothuria_pop)
   return(stats)
 }
 
-holothuria_hapdivs<-stratastat(holothuria_CO1_copy, holothuria_pop =holothuria_pop, fun=hap.div)
+holothuria_hapdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = hap.div)
 
 holothuria_hapdivs
 ```
 #Nucleotide diversity
 ```{r}
-holothuria_nucdivs<-stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = nuc.div)
+holothuria_nucdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = nuc.div)
 holothuria_nucdivs
-```
-#Double check calcs
-```{r}
-holothria_z<-sequence2gtypes(holothuria_CO1, strata=holothuria_pop)
-holothria_z<-labelHaplotypes(holothria_z)
-holothria_z
-```
-#Make a table of summary stats
-```{r}
-samples<-summary(holothria_z$gtypes)$strata.smry[,1]
-haplotypes<-summary(holothria_z$gtypes)$strata.smry[,3]
-diversities<-cbind("# Samples" = samples, "# Haplotypes" = haplotypes, "Nucleotide Diversity" = holothuria_nucdivs, "Haplotype Diversity" = holothuria_hapdivs)
-kable(diversities, digits=3)
+
+divs <- cbind(holothuria_nucdivs, holothuria_hapdivs)
+
 ```
 
-#Fst table
+# Convert to gtypes
 ```{r}
-pairwise_phi<-pairwiseTest(holothria_z$gtypes,stats="phist",nrep=1000,quietly=T,model="raw")
+holothuria_z<-sequence2gtypes(holothuria_CO1, strata=holothuria_pop)
+holothuria_z<-labelHaplotypes(holothuria_z)
+holothuria_z
+```
+
+
+# PhiST table
+```{r}
+pairwise <- pairwiseTest(holothuria_z, nrep=1000, max.cores = NULL)
+
+pairwise_phi <- pairwiseMatrix(pairwise, stat="PHIst")
 
 #PhiST in lower triangle, p-value in upper triangle
-kable(pairwise_phi$pair.mat$PHIst, digits=3)
+kable(pairwise_phi, digits=3)
 ```
+
+
 ```{r}
-phiST<-pairwise_phi$pair.mat$PHIst
+phiST<-pairwise_phi
 phiST[upper.tri(phiST)] = t(phiST)[upper.tri(phiST)]
 heatmap(phiST)
 ```
