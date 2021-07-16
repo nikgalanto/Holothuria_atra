@@ -123,3 +123,57 @@ holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
 plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
 ```
 
+##Diversity statistics
+
+#Haplotype diversity
+
+```{r}
+#Create a copy of dataset
+holothuria_CO1_copy <- holothuria_CO1
+rownames(holothuria_CO1_copy) <-holothuria_pop
+stratastat<-function(x,holothuria_pop=holothuria_pop, fun=nuc.div){
+  stats<-NULL
+  for(p in unique(holothuria_pop)){
+    stat<-fun(x[grep(p,rownames(x)),])
+  }
+  
+  names(stats)<-unique(holothuria_pop)
+  return(stats)
+}
+
+holothuria_hapdivs<-stratastat(holothuria_CO1_copy, holothuria_pop =holothuria_pop, fun=hap.div)
+
+holothuria_hapdivs
+```
+#Nucleotide diversity
+```{r}
+holothuria_nucdivs<-stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = nuc.div)
+holothuria_nucdivs
+```
+#Double check calcs
+```{r}
+holothria_z<-sequence2gtypes(holothuria_CO1, strata=holothuria_pop)
+holothria_z<-labelHaplotypes(holothria_z)
+holothria_z
+```
+#Make a table of summary stats
+```{r}
+samples<-summary(holothria_z$gtypes)$strata.smry[,1]
+haplotypes<-summary(holothria_z$gtypes)$strata.smry[,3]
+diversities<-cbind("# Samples" = samples, "# Haplotypes" = haplotypes, "Nucleotide Diversity" = holothuria_nucdivs, "Haplotype Diversity" = holothuria_hapdivs)
+kable(diversities, digits=3)
+```
+
+#Fst table
+```{r}
+pairwise_phi<-pairwiseTest(holothria_z$gtypes,stats="phist",nrep=1000,quietly=T,model="raw")
+
+#PhiST in lower triangle, p-value in upper triangle
+kable(pairwise_phi$pair.mat$PHIst, digits=3)
+```
+```{r}
+phiST<-pairwise_phi$pair.mat$PHIst
+phiST[upper.tri(phiST)] = t(phiST)[upper.tri(phiST)]
+heatmap(phiST)
+```
+
