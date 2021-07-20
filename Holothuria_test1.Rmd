@@ -125,7 +125,14 @@ holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
 #Skip distinguishing oceans for now?
 plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
 ```
-
+#Prepping for PopArt
+```{r}
+write.nexus.data(hapseqs, file = "holothuria_haplotypes.nex", interleaved = F)
+write.csv(holo_ind.hap, file = "holothuria_map3.csv", quote = F)
+#Do I need to do below? It classifies the oceans
+#write.csv(holo_ind.hap2, file="holothuria_map_IP.csv", quote = F)
+write.csv(holothuria_event_info, file = "holothuria_event_metadata.csv", quote = F)
+```
 ##Diversity statistics
 
 #Haplotype diversity
@@ -169,7 +176,7 @@ holothuria_z
 
 # PhiST table
 ```{r}
-pairwise <- pairwiseTest(holothuria_z, nrep=1000, max.cores = NULL)
+pairwise <- pairwiseTest(holothuria_z)
 
 pairwise_phi <- pairwiseMatrix(pairwise, stat="PHIst")
 
@@ -181,6 +188,22 @@ kable(pairwise_phi, digits=3)
 ```{r}
 phiST<-pairwise_phi
 phiST[upper.tri(phiST)] = t(phiST)[upper.tri(phiST)]
-heatmap(phiST)
+color<-colorRampPalette(c("yellow", "red", "blue", "green"))
+heatmap(phiST, col=color(100))
+```
+```{r}
+divs
+```
+```{r}
+holothuria_hapdivs
 ```
 
+#Organized table on excel
+holothuria_table
+
+```{r}
+colnames(holothuria_table) <- c(" ", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
+diversities<-list(holothuria_table)
+diversities
+kable(diversities, digits=3)
+```
