@@ -5,17 +5,17 @@ date: "7/11/2021"
 output: html_document
 ---
 
-##Set up
+\#\#Set up
 
 ```{r}
 library(knitr)
 library(rentrez)
 library(pegas)
 library(tidyverse)
-library(plyr)
 library(geomedb)
 library(strataG)
 ```
+
 # Query metadata
 
 Just looked through general longitude and latitudes to get majority of the data
@@ -38,7 +38,8 @@ holothuria_event_info <-holothuria_metadata$Event[,c("locality", "country", "dec
 kable(holothuria_event_info)
 ```
 
-#Lumping and cleaning locality names
+\#Lumping and cleaning locality names
+
 ```{r}
 #Lump Halmahera samples together
 holothuria_metadata$Event$locality[grep("Halmahera",holothuria_metadata$Event$locality)] <- "Halmahera"
@@ -67,14 +68,16 @@ holothuria_CO1 <- querySanger(query = "genus = Holothuria AND specificEpithet = 
 holothuria_CO1
 ```
 
-##Genetic data
+\#\#Genetic data
+
 ```{r}
 #Overwrite the names from the FASTA to have shorter values
 names(holothuria_CO1) <- str_replace(string=names(holothuria_CO1),
                                      pattern=".+\\[tissueID = (.+?)\\].+", replacement = "\\1")
 ```
 
-#Sequence alignment
+\#Sequence alignment
+
 ```{r}
 #Align the data to ensure that each site is homologous
 holothuria_CO1 <- muscle(holothuria_CO1)
@@ -83,6 +86,7 @@ image.DNAbin(holothuria_CO1)
 ```
 
 150 to 200 looks interesting...
+
 ```{r}
 image.DNAbin(holothuria_CO1[1:20, 150:200])
 ```
@@ -96,8 +100,7 @@ holothuria_CO1 <- holothuria_CO1[,60:482]
 
 ```
 
-Put the metadata in the same order as the genetic data, and only keep the sequences that are still found in the metadata after we 
-removed the ones from pops with n < 5
+Put the metadata in the same order as the genetic data, and only keep the sequences that are still found in the metadata after we removed the ones from pops with n \< 5
 
 ```{r}
 holothuria_flat <- holothuria_flat[order(holothuria_flat$materialSampleID),]
@@ -105,10 +108,16 @@ holothuria_CO1 <- holothuria_CO1[which(rownames(holothuria_CO1) %in% holothuria_
 holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
 ```
 
-##Creating a haplotype network
+## Creating a haplotype network
+
 ```{r}
 #Make a list of populations that were sampled with locality and country names
 holothuria_pop <- holothuria_flat$locality
+#write out population map for editing
+write.csv(holothuria_pop,"Holothuria_atra_Population_Map.csv", quote=F,row.names = F)
+#read in edited population map
+holothuria_pop_maps <- read.csv("Holothuria_atra_Population_Map.csv")
+holothuria_pop <- holothuria_pop_maps$regions
 
 a <- dist.dna(holothuria_CO1)
 b <- pegas::haplotype(holothuria_CO1)
@@ -122,20 +131,28 @@ c <-stack(setNames(attr(b, "index"), rownames(b)))
 c <-c[order(c$values),]
 holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
 
+
+
 #Skip distinguishing oceans for now?
 plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
 ```
-#Prepping for PopArt
+
+\#Prepping for PopArt
+
 ```{r}
+hapseqs <- b[]
 write.nexus.data(hapseqs, file = "holothuria_haplotypes.nex", interleaved = F)
 write.csv(holo_ind.hap, file = "holothuria_map3.csv", quote = F)
 #Do I need to do below? It classifies the oceans
 #write.csv(holo_ind.hap2, file="holothuria_map_IP.csv", quote = F)
+holothuria_event_info <- unique(holothuria_flat[,c("locality",
+                                                   "decimalLatitude","decimalLongitude")])
 write.csv(holothuria_event_info, file = "holothuria_event_metadata.csv", quote = F)
 ```
-##Diversity statistics
 
-#Haplotype diversity
+\#\#Diversity statistics
+
+\#Haplotype diversity
 
 ```{r}
 #Create a copy of dataset
@@ -157,7 +174,9 @@ holothuria_hapdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun 
 
 holothuria_hapdivs
 ```
-#Nucleotide diversity
+
+\#Nucleotide diversity
+
 ```{r}
 holothuria_nucdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = nuc.div)
 holothuria_nucdivs
@@ -167,14 +186,15 @@ divs <- cbind(holothuria_nucdivs, holothuria_hapdivs)
 ```
 
 # Convert to gtypes
+
 ```{r}
 holothuria_z<-sequence2gtypes(holothuria_CO1, strata=holothuria_pop)
 holothuria_z<-labelHaplotypes(holothuria_z)
 holothuria_z
 ```
 
-
 # PhiST table
+
 ```{r}
 pairwise <- pairwiseTest(holothuria_z)
 
@@ -184,22 +204,22 @@ pairwise_phi <- pairwiseMatrix(pairwise, stat="PHIst")
 kable(pairwise_phi, digits=3)
 ```
 
-
 ```{r}
 phiST<-pairwise_phi
 phiST[upper.tri(phiST)] = t(phiST)[upper.tri(phiST)]
 color<-colorRampPalette(c("yellow", "red", "blue", "green"))
 heatmap(phiST, col=color(100))
 ```
+
 ```{r}
 divs
 ```
+
 ```{r}
 holothuria_hapdivs
 ```
 
-#Organized table on excel
-holothuria_table
+# Organized table on excel holothuria_table
 
 ```{r}
 colnames(holothuria_table) <- c(" ", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
