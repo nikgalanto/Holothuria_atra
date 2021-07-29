@@ -237,26 +237,7 @@ diversities<-list(holothuria_table)
 diversities
 kable(diversities, digits=3)
 
-
-kable(diversities, digits = 3, "html") %>%
+kable(diversities, digits = 3, "html", margins = c(15,15)) %>%
   kable_styling("striped") %>%
   as_image()
-
-#Will not save!
-```
-
-```{r}
-#Doing it manually
-stratum <-c("Alam Kotok Pulau Seribu", "Bunaken-Liang Beach", "Eastern Australia", "French Frigate", "Gili Trawagan Lombok", "Halmahera", "Hilo", "Ishigaki", "Jarvis", "Johnston", "Karang Congkak", "Karimunjawa-Pulau Tengah", "Kauai", "Kingman", "Kodingarengkeke Makassar", "Kona", "Kukusan Waiciciu Flores", "Kure", "Kwajalein", "Lahewa Nias", "Laysan", "Majuro", "Mayu Island Maluku Sea", "Midway", "Niihau", "Oahu", "Ogasawara","Palmyra", "Pearl & Hermes", "Pulau Weh Aceh")
-individuals <-c("21", "21", "11", "28", "5", "40", "9", "24", "23", "26", "17", "18", "30", "27", "10", "21", "19", "23", "9", "7", "12", "13", "13", "35", "5", "24", "20", "16", "37", "20")
-haplotypes <-c("3", "5", "3", "10", "2","6", "4", "3", "5", "7", "3", "5", "8", "10", "2", "10", "3", "8", "4", "3", "8", "4", "1", "14", "4", "7", "4", "4", "10", "4")
-nd <-c("0.007", "0.012", "0.004", "0.008", "0.001", "0.007", "0.004", "0.003", "0.013", "0.013", "0.011", "0.011", "0.003", "0.014", "0.008", "0.008", "0.003", "0.010", "0.013", "0.011", "0.006", "0.012", "0.000", "0.008", "0.007", "0.005", "0.013", "0.016", "0.009", "0.004")
-hd <-c("0.624", "0.738", "0.618", "0.881", "0.600", "0.752", "0.806","0.507","0.652", "0.812", "0.640", "0.791", "0.747","0.897","0.356", "0.867", "0.284", "0.854", "0.750", "0.667", "0.894", "0.758","0.000", "0.839", "0.900", "0.790","0.658","0.758","0.788", "0.574")
-
-diversities_table <- data.frame(stratum, individuals, haplotypes, nd, hd)
-diversities_table
-kable(diversities_table, "html", digits = 3, col.name=c("Stratum", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diveristy")) %>%
-  kable_styling("striped") %>%
-  as_image()
-
 ```

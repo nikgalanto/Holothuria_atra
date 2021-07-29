@@ -1,0 +1,3011 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Holothruia atra Anlaysis},
+  pdfauthor={Nikko},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Holothruia atra Anlaysis}
+\author{Nikko}
+\date{7/11/2021}
+
+\begin{document}
+\maketitle
+
+\#\#Set up
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(rentrez)}
+\KeywordTok{library}\NormalTok{(pegas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ape
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'spdep':
+##   method   from
+##   plot.mst ape
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'pegas':
+##   method      from
+##   print.amova ade4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'pegas'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ape':
+## 
+##     mst
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.2     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(geomedb)}
+\KeywordTok{library}\NormalTok{(strataG)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'strataG'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:pegas':
+## 
+##     getPloidy, heterozygosity
+\end{verbatim}
+
+\hypertarget{query-metadata}{%
+\section{Query metadata}\label{query-metadata}}
+
+Just looked through general longitude and latitudes to get majority of
+the data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_metadata <-}\StringTok{ }\KeywordTok{queryMetadata}\NormalTok{(}
+  \DataTypeTok{entity =} \StringTok{"Sample"}\NormalTok{,}
+  \DataTypeTok{query =} \StringTok{"genus = Holothuria AND specificEpithet = atra AND _exists_:sequence"}\NormalTok{,}
+  \DataTypeTok{select =} \StringTok{"Event"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## No encoding supplied: defaulting to UTF-8.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(holothuria_metadata}\OperatorTok{$}\NormalTok{Event)}
+\KeywordTok{View}\NormalTok{(holothuria_metadata}\OperatorTok{$}\NormalTok{Sample)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{subset-the-metadata}{%
+\subsection{Subset the metadata}\label{subset-the-metadata}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_event_info <-holothuria_metadata}\OperatorTok{$}\NormalTok{Event[,}\KeywordTok{c}\NormalTok{(}\StringTok{"locality"}\NormalTok{, }\StringTok{"country"}\NormalTok{, }\StringTok{"decimalLatitude"}\NormalTok{, }\StringTok{"decimalLongitude"}\NormalTok{, }\StringTok{"eventID"}\NormalTok{)]}
+\KeywordTok{kable}\NormalTok{(holothuria_event_info)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+locality & country & decimalLatitude & decimalLongitude &
+eventID\tabularnewline
+\midrule
+\endhead
+``Mayu Island, Maluku Sea'' & Indonesia & 1.348850049 & 126.3899333 &
+6191c209a5406a5665759079336afbdc\tabularnewline
+``Tidore, Halmahera'' & Indonesia & 0.753450028 & 127.40935 &
+aca255e1179c7690089c1aa6a83bc2f5\tabularnewline
+``Pulau Weh, Aceh'' & Indonesia & 5.616416667 & 95.69966669 &
+4862585024794c3d079ede6a9c17e633\tabularnewline
+``Kararorika Island, Halmahera'' & Indonesia & 2.103916675 & 127.7863833
+& 64337ce545fb0f3a0ee50a1c27dc6c00\tabularnewline
+``Pulau Kahatola, Halmahera'' & Indonesia & 1.683333291 & 127.5309167 &
+616e93016b247dffe26a9af605abaea6\tabularnewline
+``Alam Kotok, Pulau Seribu'' & Indonesia & -5.69965 & 106.5381167 &
+d7de9b85c434782b762cdc8aa8d4f119\tabularnewline
+Rakata (Krakatau Besar) & Indonesia & -6.147183 & 105.463267 &
+dc74977627f6489ed28ed9484ef76e64\tabularnewline
+Bunaken-Liang Beach & Indonesia & 1.618368 & 124.764731 &
+432aa0e6a7b3586c8f0c24b761198dfd\tabularnewline
+Bunaken-Liang Beach & Indonesia & 1.618368 & 124.764731 &
+5c5686ab6270150d965f3852b3198ca3\tabularnewline
+``Kukusan Waiciciu, Flores'' & Indonesia & -8.591166667 & 119.79605 &
+3bc9e17de2816b2e7f23119cdb00a2ca\tabularnewline
+Karimunjawa-Pulau Tengah & Indonesia & -5.889766667 & 110.4036833 &
+725181f67d693ae45462498c15469bca\tabularnewline
+``Yop, T. Cenderwasih'' & Indonesia & -2.507116701 & 134.3778333 &
+1adf41f2fcea1e0581923c65f4d82b9a\tabularnewline
+``Widi island, Halmahera'' & Indonesia & 0.346813 & 127.634925 &
+3b7043450562630fff8dfd16e4a1ed7d\tabularnewline
+Karang Congkak & Indonesia & -5.708783333 & 106.5722667 &
+9465d79270d8b43808bd455b738bfff4\tabularnewline
+Nusa Penida & Indonesia & -8.671726 & 115.500907 &
+eb98d9c6e84c4e96423f0bb67f87bcd1\tabularnewline
+``Gili Trawagan, Lombok'' & Indonesia & -8.3053 & 115.9697583 &
+22b331fc5b694b310b07b8015de658e2\tabularnewline
+``Lahewa, Nias'' & Indonesia & 1.414603389 & 97.15330354 &
+06df3616cd01abae2ac0bb38f8467f23\tabularnewline
+``Kodingarengkeke, Makassar'' & Indonesia & -5.106111 & 119.286111 &
+1e8b63cb116a6d88d3aa10a1c0fbde07\tabularnewline
+``Tile-tile, Selayar'' & Indonesia & -6.272646 & 120.457844 &
+f51495c745ea4c52f8276d0d9228f58f\tabularnewline
+Eastern Australia & Australia & -20.245898 & 149.013367 &
+f2a05c9a5acb53c40d1800f08302c58a\tabularnewline
+French Frigate & & 23.869152 & -166.28343 &
+fc676d4e750e88e9997933338f5a8d24\tabularnewline
+Gardner & & 24.99889 & -167.99944 &
+4802db80acad0c4614c7b45daba973d6\tabularnewline
+Hilo & & 19.80045 & -155.023881 &
+82ea86783cd218722dada8912d557c3b\tabularnewline
+Jarvis & & -0.383449 & -159.996435 &
+f522d9abd32cf8236073bd68d0c7e7e9\tabularnewline
+Johnston & & 16.735855 & -169.529996 &
+f3a72fde7989f4d7c50fc1d61267a3be\tabularnewline
+Kauai & & 22.080381 & -159.520283 &
+d2f9075e11e028dc830301fe64ba0e4e\tabularnewline
+Kingman & & 6.395978 & -162.357437 &
+0293395647889aeb15f2af22995df197\tabularnewline
+Kona & & 19.629411 & -156.015071 &
+4e4ef5f0f6c1b5ff76639fe645e277be\tabularnewline
+Kure & & 28.394265 & -178.296154 &
+f76cafbca852d9ffab07fc73ff089df7\tabularnewline
+Kwajalein & & 9.175126 & 167.443657 &
+e3ac3844fcb2748244ed8215e592a70c\tabularnewline
+Laysan & & 25.768184 & -171.733024 &
+db03ac23145424a31bc94df2f00637e4\tabularnewline
+Majuro & & 7.120474 & 171.191797 &
+9d66aa210b2ce0226cd00538c1cc91d7\tabularnewline
+Solomon Islands & & -8.553384 & 158.967664 &
+ad9da1b387dd94409731fbf47b0ff59e\tabularnewline
+Midway & & 28.209446 & -177.376171 &
+12e0232dc1af0416a2fb0df161703928\tabularnewline
+New Caledonia & & -21.174877 & 165.664934 &
+138a4097f56a21ceab8eee4817632d56\tabularnewline
+Niihau & & 21.895505 & -160.152111 &
+f1e02e106c5bbf111ae0c0a0dd9c5f22\tabularnewline
+Oahu & & 21.471614 & -157.996814 &
+14923d98044a5fc7a5d7eecace0e1872\tabularnewline
+Ogasawara & & 27.092032 & 142.182116 &
+5993c838512476099b3a1800be7d2f3f\tabularnewline
+Ishigaki & & 24.453399 & 124.288782 &
+1dfabb50171e397a9f92f7e470e428b8\tabularnewline
+Papua New Guinea & & -6.395622 & 145.84373 &
+3299ae6d560861cfa3409b7649dea4b3\tabularnewline
+Palmyra & & 5.87951 & -162.077554 &
+329f88f2fc4f6c53661168c0596c173f\tabularnewline
+Pearl \& Hermes & & 27.812955 & -175.816277 &
+aa3212b07f54592ba655ab4be9f1becb\tabularnewline
+\bottomrule
+\end{longtable}
+
+\#Lumping and cleaning locality names
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Lump Halmahera samples together}
+\NormalTok{holothuria_metadata}\OperatorTok{$}\NormalTok{Event}\OperatorTok{$}\NormalTok{locality[}\KeywordTok{grep}\NormalTok{(}\StringTok{"Halmahera"}\NormalTok{,holothuria_metadata}\OperatorTok{$}\NormalTok{Event}\OperatorTok{$}\NormalTok{locality)] <-}\StringTok{ "Halmahera"}
+\NormalTok{holothuria_metadata}\OperatorTok{$}\NormalTok{Event}\OperatorTok{$}\NormalTok{locality <-}\StringTok{ }\KeywordTok{str_remove_all}\NormalTok{(holothuria_metadata}\OperatorTok{$}\NormalTok{Event}\OperatorTok{$}\NormalTok{locality,}\StringTok{'}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{"'}\NormalTok{)   }\OperatorTok{%>%}\StringTok{ }\KeywordTok{str_remove_all}\NormalTok{(}\StringTok{"[(,)]"}\NormalTok{)}
+
+\CommentTok{#join Sample and Event tables}
+\NormalTok{holothuria_flat <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(holothuria_metadata}\OperatorTok{$}\NormalTok{Sample, holothuria_metadata}\OperatorTok{$}\NormalTok{Event, }\DataTypeTok{by =} \StringTok{"eventID"}\NormalTok{)}
+
+\CommentTok{#remove samples from populations with n < 5}
+\NormalTok{holothuria_flat <-}\StringTok{ }\NormalTok{holothuria_flat }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Gardner"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "New Caledonia"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{            }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Nusa Penida"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Papua New Guinea"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{            }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Rakata Krakatau Besar"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Solomon Islands"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{            }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Tile-tile Selayar"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(locality }\OperatorTok{!=}\StringTok{ "Yop T. Cenderwasih"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{query-fasta}{%
+\section{Query FASTA}\label{query-fasta}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{listLoci}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "18S"
+## 
+## [[2]]
+## [1] "S7"
+## 
+## [[3]]
+## [1] "TMO"
+## 
+## [[4]]
+## [1] "GnRH"
+## 
+## [[5]]
+## [1] "NEW_MARKER"
+## 
+## [[6]]
+## [1] "ND2"
+## 
+## [[7]]
+## [1] "16S"
+## 
+## [[8]]
+## [1] "CR"
+## 
+## [[9]]
+## [1] "CO1"
+## 
+## [[10]]
+## [1] "CO2"
+## 
+## [[11]]
+## [1] "CYB"
+## 
+## [[12]]
+## [1] "RAG"
+## 
+## [[13]]
+## [1] "A68"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_CO1 <-}\StringTok{ }\KeywordTok{querySanger}\NormalTok{(}\DataTypeTok{query =} \StringTok{"genus = Holothuria AND specificEpithet = atra AND _exists_:sequence"}\NormalTok{, }
+                              \DataTypeTok{locus =} \StringTok{"CO1"}\NormalTok{)}
+\NormalTok{holothuria_CO1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 604 DNA sequences in binary format stored in a list.
+## 
+## Mean sequence length: 449.675 
+##    Shortest sequence: 423 
+##     Longest sequence: 499 
+## 
+## Labels:
+## https://n2t.net/ark:/21547/BNL2Ha1420.02_CO1 [marker = CO1] ...
+## https://n2t.net/ark:/21547/BNL2Ha1420.10_CO1 [marker = CO1] ...
+## https://n2t.net/ark:/21547/BNL2Ha1420.11_CO1 [marker = CO1] ...
+## https://n2t.net/ark:/21547/BNL2Ha1420.14_CO1 [marker = CO1] ...
+## https://n2t.net/ark:/21547/BNL2Ha1420.15_CO1 [marker = CO1] ...
+## https://n2t.net/ark:/21547/BNL2Ha1420.17_CO1 [marker = CO1] ...
+## ...
+## 
+## Base composition:
+##     a     c     g     t 
+## 0.302 0.277 0.164 0.256 
+## (Total: 271.6 kb)
+\end{verbatim}
+
+\#\#Genetic data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Overwrite the names from the FASTA to have shorter values}
+\KeywordTok{names}\NormalTok{(holothuria_CO1) <-}\StringTok{ }\KeywordTok{str_replace}\NormalTok{(}\DataTypeTok{string=}\KeywordTok{names}\NormalTok{(holothuria_CO1),}
+                                     \DataTypeTok{pattern=}\StringTok{".+}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{[tissueID = (.+?)}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{].+"}\NormalTok{, }\DataTypeTok{replacement =} \StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\#Sequence alignment
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Align the data to ensure that each site is homologous}
+\NormalTok{holothuria_CO1 <-}\StringTok{ }\KeywordTok{muscle}\NormalTok{(holothuria_CO1)}
+
+\KeywordTok{image.DNAbin}\NormalTok{(holothuria_CO1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Holothuria_test1_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+150 to 200 looks interesting\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{image.DNAbin}\NormalTok{(holothuria_CO1[}\DecValTok{1}\OperatorTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{150}\OperatorTok{:}\DecValTok{200}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Holothuria_test1_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+Let's trim the missing parts of the Skillings sequences
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{image.DNAbin}\NormalTok{(holothuria_CO1[,}\DecValTok{60}\OperatorTok{:}\DecValTok{482}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Holothuria_test1_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_CO1 <-}\StringTok{ }\NormalTok{holothuria_CO1[,}\DecValTok{60}\OperatorTok{:}\DecValTok{482}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Put the metadata in the same order as the genetic data, and only keep
+the sequences that are still found in the metadata after we removed the
+ones from pops with n \textless{} 5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_flat <-}\StringTok{ }\NormalTok{holothuria_flat[}\KeywordTok{order}\NormalTok{(holothuria_flat}\OperatorTok{$}\NormalTok{materialSampleID),]}
+\NormalTok{holothuria_CO1 <-}\StringTok{ }\NormalTok{holothuria_CO1[}\KeywordTok{which}\NormalTok{(}\KeywordTok{rownames}\NormalTok{(holothuria_CO1) }\OperatorTok{%in%}\StringTok{ }\NormalTok{holothuria_flat}\OperatorTok{$}\NormalTok{materialSampleID),]}
+\NormalTok{holothuria_CO1 <-}\StringTok{ }\NormalTok{holothuria_CO1[}\KeywordTok{order}\NormalTok{(}\KeywordTok{rownames}\NormalTok{(holothuria_CO1)),]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{creating-a-haplotype-network}{%
+\subsection{Creating a haplotype
+network}\label{creating-a-haplotype-network}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Make a list of populations that were sampled with locality and country names}
+\NormalTok{holothuria_pop <-}\StringTok{ }\NormalTok{holothuria_flat}\OperatorTok{$}\NormalTok{locality}
+\CommentTok{#write out population map for editing}
+\KeywordTok{write.csv}\NormalTok{(holothuria_pop,}\StringTok{"Holothuria_atra_Population_Map.csv"}\NormalTok{, }\DataTypeTok{quote=}\NormalTok{F,}\DataTypeTok{row.names =}\NormalTok{ F)}
+\CommentTok{#read in edited population map}
+\CommentTok{#holothuria_pop_maps <- read.csv("Holothuria_atra_Population_Map.csv")}
+\CommentTok{#holothuria_pop <- holothuria_pop_maps$regions}
+
+\NormalTok{a <-}\StringTok{ }\KeywordTok{dist.dna}\NormalTok{(holothuria_CO1)}
+\NormalTok{b <-}\StringTok{ }\NormalTok{pegas}\OperatorTok{::}\KeywordTok{haplotype}\NormalTok{(holothuria_CO1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(holothuria_CO1): some sequences of different lengths
+## were assigned to the same haplotype
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(holothuria_CO1): some sequences were not assigned to
+## the same haplotype because of ambiguities
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(b, }\DataTypeTok{what=}\StringTok{"label"}\NormalTok{)}
+
+\CommentTok{#Create the network}
+\NormalTok{holothuria_net <-}\StringTok{ }\NormalTok{pegas}\OperatorTok{::}\KeywordTok{haploNet}\NormalTok{(b)}
+
+\CommentTok{#Make a table of which haplotypes occur in which populations}
+\NormalTok{c <-}\KeywordTok{stack}\NormalTok{(}\KeywordTok{setNames}\NormalTok{(}\KeywordTok{attr}\NormalTok{(b, }\StringTok{"index"}\NormalTok{), }\KeywordTok{rownames}\NormalTok{(b)))}
+\NormalTok{c <-c[}\KeywordTok{order}\NormalTok{(c}\OperatorTok{$}\NormalTok{values),]}
+\NormalTok{holo_ind.hap<-}\KeywordTok{table}\NormalTok{(}\DataTypeTok{hap=}\NormalTok{c}\OperatorTok{$}\NormalTok{ind, }\DataTypeTok{holothuria_pop=}\NormalTok{holothuria_pop)}
+
+
+
+\CommentTok{#Skip distinguishing oceans for now?}
+\KeywordTok{plot}\NormalTok{(holothuria_net,}\DataTypeTok{size=}\KeywordTok{attr}\NormalTok{(holothuria_net, }\StringTok{"freq"}\NormalTok{), }\DataTypeTok{scale.ratio=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{pie=}\NormalTok{holo_ind.hap, }\DataTypeTok{legend=}\NormalTok{F, }\DataTypeTok{labels=}\NormalTok{F, }\DataTypeTok{threshold=}\DecValTok{0}\NormalTok{, }\DataTypeTok{show.mutation=}\DecValTok{2}\NormalTok{, }\DataTypeTok{fast=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Holothuria_test1_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\#Prepping for PopArt
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hapseqs <-}\StringTok{ }\NormalTok{b[]}
+\KeywordTok{write.nexus.data}\NormalTok{(hapseqs, }\DataTypeTok{file =} \StringTok{"holothuria_haplotypes.nex"}\NormalTok{, }\DataTypeTok{interleaved =}\NormalTok{ F)}
+\KeywordTok{write.csv}\NormalTok{(holo_ind.hap, }\DataTypeTok{file =} \StringTok{"holothuria_map3.csv"}\NormalTok{, }\DataTypeTok{quote =}\NormalTok{ F)}
+\CommentTok{#Do I need to do below? It classifies the oceans}
+\CommentTok{#write.csv(holo_ind.hap2, file="holothuria_map_IP.csv", quote = F)}
+\NormalTok{holothuria_event_info <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(holothuria_flat[,}\KeywordTok{c}\NormalTok{(}\StringTok{"locality"}\NormalTok{,}
+                                                   \StringTok{"decimalLatitude"}\NormalTok{,}\StringTok{"decimalLongitude"}\NormalTok{)])}
+\KeywordTok{write.csv}\NormalTok{(holothuria_event_info, }\DataTypeTok{file =} \StringTok{"holothuria_event_metadata.csv"}\NormalTok{, }\DataTypeTok{quote =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\#\#Diversity statistics
+
+\#Haplotype diversity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Create a copy of dataset}
+\NormalTok{holothuria_CO1_copy <-}\StringTok{ }\NormalTok{holothuria_CO1}
+\KeywordTok{rownames}\NormalTok{(holothuria_CO1_copy) <-}\StringTok{ }\NormalTok{holothuria_pop}
+\NormalTok{stratastat<-}\ControlFlowTok{function}\NormalTok{(x,}\DataTypeTok{pop=}\NormalTok{pop, }\DataTypeTok{fun=}\NormalTok{nuc.div)\{}
+\NormalTok{  stats<-}\OtherTok{NULL}
+  \ControlFlowTok{for}\NormalTok{(p }\ControlFlowTok{in} \KeywordTok{unique}\NormalTok{(pop))\{}
+    \KeywordTok{print}\NormalTok{(p)}
+\NormalTok{    stat<-}\KeywordTok{fun}\NormalTok{(x[}\KeywordTok{grep}\NormalTok{(p,}\KeywordTok{rownames}\NormalTok{(x)),])}
+\NormalTok{    stats <-}\StringTok{ }\KeywordTok{c}\NormalTok{(stats,stat)}
+\NormalTok{  \}}
+  
+  \KeywordTok{names}\NormalTok{(stats)<-}\KeywordTok{unique}\NormalTok{(holothuria_pop)}
+  \KeywordTok{return}\NormalTok{(stats)}
+\NormalTok{\}}
+
+\NormalTok{holothuria_hapdivs <-}\StringTok{ }\KeywordTok{stratastat}\NormalTok{(holothuria_CO1_copy, }\DataTypeTok{pop =}\NormalTok{ holothuria_pop, }\DataTypeTok{fun =}\NormalTok{ hap.div)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "French Frigate"
+## [1] "Hilo"
+## [1] "Jarvis"
+## [1] "Johnston"
+## [1] "Kauai"
+## [1] "Kingman"
+## [1] "Kona"
+## [1] "Kure"
+## [1] "Kwajalein"
+## [1] "Laysan"
+## [1] "Majuro"
+## [1] "Midway"
+## [1] "Niihau"
+## [1] "Oahu"
+## [1] "Ogasawara"
+## [1] "Ishigaki"
+## [1] "Palmyra"
+## [1] "Pearl & Hermes"
+## [1] "Mayu Island Maluku Sea"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(x): no segregating site detected with these options
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Halmahera"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(x): some sequences were not assigned to the same
+## haplotype because of ambiguities
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Pulau Weh Aceh"
+## [1] "Alam Kotok Pulau Seribu"
+## [1] "Bunaken-Liang Beach"
+## [1] "Kukusan Waiciciu Flores"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(x): some sequences were not assigned to the same
+## haplotype because of ambiguities
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Karimunjawa-Pulau Tengah"
+## [1] "Karang Congkak"
+## [1] "Gili Trawagan Lombok"
+## [1] "Lahewa Nias"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in haplotype.DNAbin(x): some sequences of different lengths were
+## assigned to the same haplotype
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Kodingarengkeke Makassar"
+## [1] "Eastern Australia"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_hapdivs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           French Frigate                     Hilo                   Jarvis 
+##                0.8809524                0.8055556                0.6521739 
+##                 Johnston                    Kauai                  Kingman 
+##                0.8123077                0.7471264                0.8974359 
+##                     Kona                     Kure                Kwajalein 
+##                0.8666667                0.8537549                0.7500000 
+##                   Laysan                   Majuro                   Midway 
+##                0.8939394                0.7582418                0.8386555 
+##                   Niihau                     Oahu                Ogasawara 
+##                0.9000000                0.7898551                0.6578947 
+##                 Ishigaki                  Palmyra           Pearl & Hermes 
+##                0.5072464                0.7583333                0.7882883 
+##   Mayu Island Maluku Sea                Halmahera           Pulau Weh Aceh 
+##                0.0000000                0.7524390                0.5736842 
+##  Alam Kotok Pulau Seribu      Bunaken-Liang Beach  Kukusan Waiciciu Flores 
+##                0.6238095                0.7380952                0.2842105 
+## Karimunjawa-Pulau Tengah           Karang Congkak     Gili Trawagan Lombok 
+##                0.7908497                0.6397059                0.6000000 
+##              Lahewa Nias Kodingarengkeke Makassar        Eastern Australia 
+##                0.6666667                0.3555556                0.6181818
+\end{verbatim}
+
+\#Nucleotide diversity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_nucdivs <-}\StringTok{ }\KeywordTok{stratastat}\NormalTok{(holothuria_CO1_copy, }\DataTypeTok{pop =}\NormalTok{ holothuria_pop, }\DataTypeTok{fun =}\NormalTok{ nuc.div)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "French Frigate"
+## [1] "Hilo"
+## [1] "Jarvis"
+## [1] "Johnston"
+## [1] "Kauai"
+## [1] "Kingman"
+## [1] "Kona"
+## [1] "Kure"
+## [1] "Kwajalein"
+## [1] "Laysan"
+## [1] "Majuro"
+## [1] "Midway"
+## [1] "Niihau"
+## [1] "Oahu"
+## [1] "Ogasawara"
+## [1] "Ishigaki"
+## [1] "Palmyra"
+## [1] "Pearl & Hermes"
+## [1] "Mayu Island Maluku Sea"
+## [1] "Halmahera"
+## [1] "Pulau Weh Aceh"
+## [1] "Alam Kotok Pulau Seribu"
+## [1] "Bunaken-Liang Beach"
+## [1] "Kukusan Waiciciu Flores"
+## [1] "Karimunjawa-Pulau Tengah"
+## [1] "Karang Congkak"
+## [1] "Gili Trawagan Lombok"
+## [1] "Lahewa Nias"
+## [1] "Kodingarengkeke Makassar"
+## [1] "Eastern Australia"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_nucdivs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           French Frigate                     Hilo                   Jarvis 
+##              0.008155403              0.004071447              0.012614582 
+##                 Johnston                    Kauai                  Kingman 
+##              0.013144208              0.003293389              0.014238279 
+##                     Kona                     Kure                Kwajalein 
+##              0.007756389              0.009605771              0.012608353 
+##                   Laysan                   Majuro                   Midway 
+##              0.006411634              0.011772076              0.008367602 
+##                   Niihau                     Oahu                Ogasawara 
+##              0.007092199              0.005156405              0.013002364 
+##                 Ishigaki                  Palmyra           Pearl & Hermes 
+##              0.002775208              0.015504334              0.008568853 
+##   Mayu Island Maluku Sea                Halmahera           Pulau Weh Aceh 
+##              0.000000000              0.006802682              0.003969143 
+##  Alam Kotok Pulau Seribu      Bunaken-Liang Beach  Kukusan Waiciciu Flores 
+##              0.006574356              0.012495778              0.002902375 
+## Karimunjawa-Pulau Tengah           Karang Congkak     Gili Trawagan Lombok 
+##              0.011109566              0.011055486              0.001418440 
+##              Lahewa Nias Kodingarengkeke Makassar        Eastern Australia 
+##              0.010711375              0.008405569              0.004298302
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{divs <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(holothuria_nucdivs, holothuria_hapdivs)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{convert-to-gtypes}{%
+\section{Convert to gtypes}\label{convert-to-gtypes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_z<-}\KeywordTok{sequence2gtypes}\NormalTok{(holothuria_CO1, }\DataTypeTok{strata=}\NormalTok{holothuria_pop)}
+\NormalTok{holothuria_z<-}\KeywordTok{labelHaplotypes}\NormalTok{(holothuria_z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The following samples are missing data for all loci and have been
+## removed: Ha_Maju_12, Ha1432.02, Ha2151.05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## <<< gtypes created on 2021-07-29 00:35:06 >>>
+## 
+## Contents: 584 samples, 1 locus, 30 strata
+## Other info: haps.unassigned
+## 
+## Strata summary:
+##                     stratum num.ind num.missing num.haplotypes
+## 1   Alam Kotok Pulau Seribu      21           0              3
+## 2       Bunaken-Liang Beach      21           0              5
+## 3         Eastern Australia      11           0              3
+## 4            French Frigate      28           0             10
+## 5      Gili Trawagan Lombok       5           0              2
+## 6                 Halmahera      40           0              6
+## 7                      Hilo       9           0              4
+## 8                  Ishigaki      24           0              3
+## 9                    Jarvis      23           0              5
+## 10                 Johnston      26           0              7
+## 11           Karang Congkak      17           0              3
+## 12 Karimunjawa-Pulau Tengah      18           0              5
+## 13                    Kauai      30           0              8
+## 14                  Kingman      27           0             10
+## 15 Kodingarengkeke Makassar      10           0              2
+## 16                     Kona      21           0             10
+## 17  Kukusan Waiciciu Flores      19           0              3
+## 18                     Kure      23           0              8
+## 19                Kwajalein       9           0              4
+## 20              Lahewa Nias       7           0              3
+## 21                   Laysan      12           0              8
+## 22                   Majuro      13           0              4
+## 23   Mayu Island Maluku Sea      13           0              1
+## 24                   Midway      35           0             14
+## 25                   Niihau       5           0              4
+## 26                     Oahu      24           0              7
+## 27                Ogasawara      20           0              4
+## 28                  Palmyra      16           0              4
+## 29           Pearl & Hermes      37           0             10
+## 30           Pulau Weh Aceh      20           0              4
+## 
+## Sequence summary:
+##    locus num.seqs mean.length mean.num.ns mean.num.indels
+## 1 gene.1       61         423           0               0
+\end{verbatim}
+
+\hypertarget{phist-table}{%
+\section{PhiST table}\label{phist-table}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairwise <-}\StringTok{ }\KeywordTok{pairwiseTest}\NormalTok{(holothuria_z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## <<< gtypes created on 2021-07-29 00:35:06 >>>
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:07 : Pairwise tests (1000 permutations)
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:07 : Alam Kotok Pulau Seribu v. Bunaken-Liang Beach
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:07 : Alam Kotok Pulau Seribu v. Eastern Australia
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:08 : Alam Kotok Pulau Seribu v. French Frigate
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:08 : Alam Kotok Pulau Seribu v. Gili Trawagan Lombok
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:08 : Alam Kotok Pulau Seribu v. Halmahera
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:08 : Alam Kotok Pulau Seribu v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:08 : Alam Kotok Pulau Seribu v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:09 : Alam Kotok Pulau Seribu v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:09 : Alam Kotok Pulau Seribu v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:09 : Alam Kotok Pulau Seribu v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:09 : Alam Kotok Pulau Seribu v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:09 : Alam Kotok Pulau Seribu v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:10 : Alam Kotok Pulau Seribu v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:11 : Alam Kotok Pulau Seribu v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:12 : Alam Kotok Pulau Seribu v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:12 : Alam Kotok Pulau Seribu v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:12 : Alam Kotok Pulau Seribu v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:12 : Alam Kotok Pulau Seribu v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:12 : Alam Kotok Pulau Seribu v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. Eastern Australia
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. French Frigate
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. Gili Trawagan Lombok
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. Halmahera
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:13 : Bunaken-Liang Beach v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:14 : Bunaken-Liang Beach v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:15 : Bunaken-Liang Beach v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:15 : Bunaken-Liang Beach v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:15 : Bunaken-Liang Beach v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:15 : Bunaken-Liang Beach v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:15 : Bunaken-Liang Beach v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:16 : Bunaken-Liang Beach v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:17 : Bunaken-Liang Beach v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:17 : Bunaken-Liang Beach v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:17 : Bunaken-Liang Beach v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:17 : Bunaken-Liang Beach v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:17 : Bunaken-Liang Beach v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. French Frigate
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. Gili Trawagan Lombok
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. Halmahera
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:18 : Eastern Australia v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:19 : Eastern Australia v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:19 : Eastern Australia v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:19 : Eastern Australia v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:19 : Eastern Australia v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:19 : Eastern Australia v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:20 : Eastern Australia v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:20 : Eastern Australia v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:20 : Eastern Australia v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:20 : Eastern Australia v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:20 : Eastern Australia v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:21 : Eastern Australia v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:21 : Eastern Australia v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:21 : Eastern Australia v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:21 : Eastern Australia v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:21 : Eastern Australia v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:22 : Eastern Australia v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Gili Trawagan Lombok
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Halmahera
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:23 : French Frigate v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:24 : French Frigate v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:25 : French Frigate v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:26 : French Frigate v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:26 : French Frigate v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:26 : French Frigate v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:26 : French Frigate v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:26 : French Frigate v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : French Frigate v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : French Frigate v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : French Frigate v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : Gili Trawagan Lombok v. Halmahera
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : Gili Trawagan Lombok v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:27 : Gili Trawagan Lombok v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:28 : Gili Trawagan Lombok v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:28 : Gili Trawagan Lombok v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:28 : Gili Trawagan Lombok v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:28 : Gili Trawagan Lombok v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:28 : Gili Trawagan Lombok v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:29 : Gili Trawagan Lombok v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:29 : Gili Trawagan Lombok v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:29 : Gili Trawagan Lombok v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:29 : Gili Trawagan Lombok v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:29 : Gili Trawagan Lombok v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:30 : Gili Trawagan Lombok v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:31 : Gili Trawagan Lombok v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:31 : Gili Trawagan Lombok v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:31 : Gili Trawagan Lombok v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:31 : Gili Trawagan Lombok v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:31 : Gili Trawagan Lombok v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Gili Trawagan Lombok v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Halmahera v. Hilo
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Halmahera v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Halmahera v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Halmahera v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:32 : Halmahera v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:33 : Halmahera v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:34 : Halmahera v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:34 : Halmahera v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:34 : Halmahera v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:34 : Halmahera v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:34 : Halmahera v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:35 : Halmahera v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:36 : Halmahera v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:36 : Halmahera v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:36 : Hilo v. Ishigaki
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:36 : Hilo v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:36 : Hilo v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:37 : Hilo v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:38 : Hilo v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:39 : Hilo v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:39 : Hilo v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:39 : Hilo v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:39 : Hilo v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:39 : Hilo v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Hilo v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Hilo v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Hilo v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Ishigaki v. Jarvis
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Ishigaki v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:40 : Ishigaki v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:41 : Ishigaki v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:41 : Ishigaki v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:41 : Ishigaki v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:41 : Ishigaki v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:41 : Ishigaki v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:42 : Ishigaki v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:43 : Ishigaki v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:44 : Ishigaki v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:44 : Ishigaki v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:44 : Jarvis v. Johnston
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:44 : Jarvis v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:44 : Jarvis v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:45 : Jarvis v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:46 : Jarvis v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:46 : Jarvis v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:46 : Jarvis v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:46 : Jarvis v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:46 : Jarvis v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:47 : Jarvis v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:48 : Jarvis v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:48 : Johnston v. Karang Congkak
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:48 : Johnston v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:48 : Johnston v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:48 : Johnston v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:49 : Johnston v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:50 : Johnston v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:50 : Johnston v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:50 : Johnston v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:50 : Johnston v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:50 : Johnston v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Johnston v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Johnston v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Johnston v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Johnston v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Johnston v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:51 : Karang Congkak v. Karimunjawa-Pulau Tengah
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:52 : Karang Congkak v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:52 : Karang Congkak v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:52 : Karang Congkak v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:52 : Karang Congkak v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:52 : Karang Congkak v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:53 : Karang Congkak v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:54 : Karang Congkak v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:54 : Karang Congkak v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:54 : Karang Congkak v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:54 : Karang Congkak v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:54 : Karang Congkak v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:55 : Karang Congkak v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:55 : Karang Congkak v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:55 : Karimunjawa-Pulau Tengah v. Kauai
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:55 : Karimunjawa-Pulau Tengah v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:55 : Karimunjawa-Pulau Tengah v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:56 : Karimunjawa-Pulau Tengah v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:57 : Karimunjawa-Pulau Tengah v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:57 : Karimunjawa-Pulau Tengah v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:57 : Karimunjawa-Pulau Tengah v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:57 : Karimunjawa-Pulau Tengah v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:57 : Karimunjawa-Pulau Tengah v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Karimunjawa-Pulau Tengah v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Karimunjawa-Pulau Tengah v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Karimunjawa-Pulau Tengah v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Karimunjawa-Pulau Tengah v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Kauai v. Kingman
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:58 : Kauai v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:59 : Kauai v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:59 : Kauai v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:59 : Kauai v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:59 : Kauai v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:35:59 : Kauai v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:00 : Kauai v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:01 : Kauai v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:01 : Kauai v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:01 : Kauai v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:01 : Kauai v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:01 : Kingman v. Kodingarengkeke Makassar
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:02 : Kingman v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:02 : Kingman v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:02 : Kingman v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:02 : Kingman v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:02 : Kingman v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:03 : Kingman v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:03 : Kingman v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:03 : Kingman v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:03 : Kingman v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:03 : Kingman v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kingman v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kingman v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kingman v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kingman v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kingman v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:04 : Kodingarengkeke Makassar v. Kona
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:05 : Kodingarengkeke Makassar v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:06 : Kodingarengkeke Makassar v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:07 : Kodingarengkeke Makassar v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:07 : Kodingarengkeke Makassar v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:07 : Kona v. Kukusan Waiciciu Flores
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:07 : Kona v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:07 : Kona v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:08 : Kona v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kona v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kona v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kona v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kona v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kona v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:09 : Kukusan Waiciciu Flores v. Kure
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:10 : Kukusan Waiciciu Flores v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:11 : Kukusan Waiciciu Flores v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:11 : Kukusan Waiciciu Flores v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:11 : Kukusan Waiciciu Flores v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:11 : Kukusan Waiciciu Flores v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:11 : Kukusan Waiciciu Flores v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kukusan Waiciciu Flores v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kure v. Kwajalein
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kure v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kure v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kure v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:12 : Kure v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:13 : Kure v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kure v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kwajalein v. Lahewa Nias
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kwajalein v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kwajalein v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kwajalein v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:14 : Kwajalein v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:15 : Kwajalein v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:15 : Kwajalein v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:15 : Kwajalein v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:15 : Kwajalein v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:15 : Kwajalein v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Kwajalein v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Lahewa Nias v. Laysan
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Lahewa Nias v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Lahewa Nias v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Lahewa Nias v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:16 : Lahewa Nias v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:17 : Lahewa Nias v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:17 : Lahewa Nias v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:17 : Lahewa Nias v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:17 : Lahewa Nias v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:17 : Lahewa Nias v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:18 : Laysan v. Majuro
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:18 : Laysan v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:18 : Laysan v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:18 : Laysan v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:18 : Laysan v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Laysan v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Laysan v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Laysan v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Laysan v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Majuro v. Mayu Island Maluku Sea
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:19 : Majuro v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:20 : Majuro v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:20 : Majuro v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:20 : Majuro v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:20 : Majuro v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:20 : Majuro v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Majuro v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Mayu Island Maluku Sea v. Midway
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Mayu Island Maluku Sea v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Mayu Island Maluku Sea v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Mayu Island Maluku Sea v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:21 : Mayu Island Maluku Sea v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:22 : Mayu Island Maluku Sea v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:22 : Mayu Island Maluku Sea v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:22 : Midway v. Niihau
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:22 : Midway v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:22 : Midway v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:23 : Midway v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:23 : Midway v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:23 : Midway v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:23 : Niihau v. Oahu
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:23 : Niihau v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:24 : Niihau v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:24 : Niihau v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:24 : Niihau v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:24 : Oahu v. Ogasawara
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:24 : Oahu v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Oahu v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Oahu v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Ogasawara v. Palmyra
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Ogasawara v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Ogasawara v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:25 : Palmyra v. Pearl & Hermes
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:26 : Palmyra v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:26 : Pearl & Hermes v. Pulau Weh Aceh
+\end{verbatim}
+
+\begin{verbatim}
+## 2021-07-29 00:36:26 : Done
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairwise_phi <-}\StringTok{ }\KeywordTok{pairwiseMatrix}\NormalTok{(pairwise, }\DataTypeTok{stat=}\StringTok{"PHIst"}\NormalTok{)}
+
+\CommentTok{#PhiST in lower triangle, p-value in upper triangle}
+\KeywordTok{kable}\NormalTok{(pairwise_phi, }\DataTypeTok{digits=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr@{}}
+\toprule
+& Alam Kotok Pulau Seribu & Bunaken-Liang Beach & Eastern Australia &
+French Frigate & Gili Trawagan Lombok & Halmahera & Hilo & Ishigaki &
+Jarvis & Johnston & Karang Congkak & Karimunjawa-Pulau Tengah & Kauai &
+Kingman & Kodingarengkeke Makassar & Kona & Kukusan Waiciciu Flores &
+Kure & Kwajalein & Lahewa Nias & Laysan & Majuro & Mayu Island Maluku
+Sea & Midway & Niihau & Oahu & Ogasawara & Palmyra & Pearl \& Hermes &
+Pulau Weh Aceh\tabularnewline
+\midrule
+\endhead
+Alam Kotok Pulau Seribu & NA & 0.082 & 0.423 & 0.001 & 0.276 & 0.715 &
+0.001 & 0.001 & 0.130 & 0.001 & 0.003 & 0.058 & 0.001 & 0.001 & 0.341 &
+0.001 & 0.107 & 0.001 & 0.010 & 0.012 & 0.001 & 0.056 & 0.416 & 0.001 &
+0.002 & 0.001 & 0.012 & 0.010 & 0.001 & 0.176\tabularnewline
+Bunaken-Liang Beach & 0.118 & NA & 0.029 & 0.001 & 0.091 & 0.026 & 0.004
+& 0.001 & 0.524 & 0.001 & 0.164 & 0.395 & 0.001 & 0.011 & 0.416 & 0.001
+& 0.003 & 0.001 & 0.205 & 0.343 & 0.001 & 0.775 & 0.012 & 0.001 & 0.036
+& 0.001 & 0.334 & 0.163 & 0.001 & 0.006\tabularnewline
+Eastern Australia & -0.022 & 0.210 & NA & 0.001 & 0.811 & 0.324 & 0.001
+& 0.093 & 0.094 & 0.001 & 0.001 & 0.024 & 0.001 & 0.001 & 0.201 & 0.001
+& 0.681 & 0.001 & 0.014 & 0.001 & 0.001 & 0.032 & 1.000 & 0.001 & 0.001
+& 0.001 & 0.013 & 0.013 & 0.001 & 0.785\tabularnewline
+French Frigate & 0.774 & 0.493 & 0.849 & NA & 0.001 & 0.001 & 0.003 &
+0.001 & 0.001 & 0.193 & 0.001 & 0.001 & 0.001 & 0.013 & 0.001 & 0.375 &
+0.001 & 0.240 & 0.004 & 0.009 & 0.003 & 0.001 & 0.001 & 0.678 & 0.504 &
+0.001 & 0.001 & 0.001 & 0.632 & 0.001\tabularnewline
+Gili Trawagan Lombok & 0.001 & 0.223 & -0.094 & 0.871 & NA & 0.224 &
+0.002 & 1.000 & 0.187 & 0.001 & 0.009 & 0.085 & 0.001 & 0.004 & 0.110 &
+0.001 & 1.000 & 0.001 & 0.035 & 0.022 & 0.002 & 0.106 & 0.009 & 0.001 &
+0.004 & 0.001 & 0.052 & 0.107 & 0.001 & 0.867\tabularnewline
+Halmahera & -0.032 & 0.121 & 0.005 & 0.732 & 0.012 & NA & 0.001 & 0.005
+& 0.047 & 0.001 & 0.001 & 0.045 & 0.001 & 0.001 & 0.465 & 0.001 & 0.054
+& 0.001 & 0.004 & 0.006 & 0.001 & 0.036 & 0.350 & 0.001 & 0.002 & 0.001
+& 0.005 & 0.002 & 0.001 & 0.103\tabularnewline
+Hilo & 0.777 & 0.434 & 0.906 & 0.274 & 0.967 & 0.715 & NA & 0.001 &
+0.004 & 0.073 & 0.006 & 0.001 & 0.560 & 0.201 & 0.002 & 0.041 & 0.001 &
+0.010 & 0.098 & 0.013 & 0.656 & 0.017 & 0.001 & 0.001 & 0.017 & 0.678 &
+0.020 & 0.091 & 0.004 & 0.001\tabularnewline
+Ishigaki & 0.167 & 0.425 & 0.075 & 0.911 & -0.162 & 0.153 & 0.968 & NA &
+0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.084 &
+0.001 & 0.001 & 0.002 & 0.001 & 0.001 & 1.000 & 0.001 & 0.001 & 0.001 &
+0.001 & 0.001 & 0.001 & 0.176\tabularnewline
+Jarvis & 0.062 & -0.021 & 0.125 & 0.531 & 0.138 & 0.084 & 0.443 & 0.335
+& NA & 0.001 & 0.083 & 0.338 & 0.001 & 0.002 & 0.437 & 0.001 & 0.016 &
+0.001 & 0.211 & 0.132 & 0.001 & 0.407 & 0.039 & 0.001 & 0.031 & 0.001 &
+0.264 & 0.192 & 0.001 & 0.013\tabularnewline
+Johnston & 0.629 & 0.371 & 0.674 & 0.024 & 0.675 & 0.635 & 0.090 & 0.784
+& 0.423 & NA & 0.002 & 0.001 & 0.001 & 0.048 & 0.001 & 0.294 & 0.001 &
+0.736 & 0.010 & 0.063 & 0.054 & 0.001 & 0.001 & 0.217 & 0.771 & 0.001 &
+0.001 & 0.002 & 0.509 & 0.001\tabularnewline
+Karang Congkak & 0.385 & 0.056 & 0.488 & 0.388 & 0.507 & 0.369 & 0.328 &
+0.687 & 0.119 & 0.225 & NA & 0.124 & 0.001 & 0.123 & 0.037 & 0.001 &
+0.001 & 0.001 & 0.378 & 0.470 & 0.001 & 0.294 & 0.001 & 0.001 & 0.060 &
+0.001 & 0.211 & 0.239 & 0.001 & 0.001\tabularnewline
+Karimunjawa-Pulau Tengah & 0.124 & -0.020 & 0.236 & 0.597 & 0.270 &
+0.112 & 0.556 & 0.479 & -0.002 & 0.428 & 0.068 & NA & 0.001 & 0.002 &
+0.389 & 0.001 & 0.001 & 0.001 & 0.120 & 0.101 & 0.001 & 0.356 & 0.010 &
+0.001 & 0.012 & 0.001 & 0.229 & 0.099 & 0.001 & 0.004\tabularnewline
+Kauai & 0.857 & 0.607 & 0.939 & 0.363 & 0.968 & 0.793 & -0.024 & 0.970 &
+0.607 & 0.186 & 0.528 & 0.712 & NA & 0.001 & 0.001 & 0.002 & 0.001 &
+0.001 & 0.003 & 0.001 & 0.474 & 0.001 & 0.001 & 0.001 & 0.002 & 0.117 &
+0.001 & 0.004 & 0.001 & 0.001\tabularnewline
+Kingman & 0.473 & 0.182 & 0.529 & 0.097 & 0.535 & 0.483 & 0.032 & 0.676
+& 0.228 & 0.058 & 0.055 & 0.236 & 0.151 & NA & 0.004 & 0.106 & 0.001 &
+0.196 & 0.370 & 0.448 & 0.134 & 0.047 & 0.001 & 0.016 & 0.602 & 0.051 &
+0.034 & 0.073 & 0.020 & 0.001\tabularnewline
+Kodingarengkeke Makassar & -0.033 & -0.025 & 0.075 & 0.702 & 0.111 &
+-0.036 & 0.691 & 0.361 & -0.037 & 0.509 & 0.203 & -0.013 & 0.829 & 0.324
+& NA & 0.001 & 0.026 & 0.001 & 0.118 & 0.122 & 0.001 & 0.368 & 0.174 &
+0.001 & 0.006 & 0.001 & 0.153 & 0.140 & 0.001 & 0.043\tabularnewline
+Kona & 0.770 & 0.467 & 0.856 & 0.000 & 0.882 & 0.723 & 0.135 & 0.922 &
+0.499 & 0.011 & 0.353 & 0.577 & 0.226 & 0.051 & 0.691 & NA & 0.001 &
+0.305 & 0.009 & 0.020 & 0.129 & 0.003 & 0.001 & 0.228 & 0.689 & 0.005 &
+0.001 & 0.006 & 0.209 & 0.001\tabularnewline
+Kukusan Waiciciu Flores & 0.057 & 0.310 & -0.043 & 0.861 & -0.145 &
+0.088 & 0.894 & 0.028 & 0.227 & 0.727 & 0.572 & 0.343 & 0.930 & 0.604 &
+0.184 & 0.866 & NA & 0.001 & 0.003 & 0.004 & 0.001 & 0.004 & 0.890 &
+0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.539\tabularnewline
+Kure & 0.697 & 0.398 & 0.772 & 0.016 & 0.787 & 0.670 & 0.169 & 0.863 &
+0.440 & -0.027 & 0.280 & 0.490 & 0.259 & 0.018 & 0.591 & 0.008 & 0.802 &
+NA & 0.005 & 0.021 & 0.020 & 0.001 & 0.001 & 0.532 & 0.513 & 0.001 &
+0.001 & 0.005 & 0.778 & 0.001\tabularnewline
+Kwajalein & 0.386 & 0.038 & 0.490 & 0.375 & 0.496 & 0.375 & 0.230 &
+0.730 & 0.052 & 0.209 & -0.017 & 0.096 & 0.487 & -0.005 & 0.182 & 0.314
+& 0.589 & 0.243 & NA & 0.474 & 0.023 & 0.315 & 0.002 & 0.002 & 0.088 &
+0.014 & 0.470 & 0.739 & 0.001 & 0.001\tabularnewline
+Lahewa Nias & 0.448 & 0.036 & 0.583 & 0.293 & 0.586 & 0.420 & 0.316 &
+0.800 & 0.115 & 0.130 & -0.020 & 0.144 & 0.577 & -0.024 & 0.216 & 0.274
+& 0.658 & 0.183 & -0.049 & NA & 0.007 & 0.477 & 0.002 & 0.012 & 0.334 &
+0.005 & 0.353 & 0.361 & 0.006 & 0.003\tabularnewline
+Laysan & 0.778 & 0.457 & 0.882 & 0.193 & 0.921 & 0.725 & -0.047 & 0.949
+& 0.475 & 0.078 & 0.356 & 0.574 & -0.013 & 0.053 & 0.694 & 0.060 & 0.883
+& 0.118 & 0.278 & 0.311 & NA & 0.003 & 0.001 & 0.004 & 0.205 & 0.152 &
+0.001 & 0.033 & 0.006 & 0.001\tabularnewline
+Majuro & 0.166 & -0.061 & 0.255 & 0.442 & 0.246 & 0.177 & 0.362 & 0.499
+& -0.008 & 0.317 & 0.006 & -0.011 & 0.585 & 0.126 & 0.002 & 0.410 &
+0.364 & 0.340 & -0.010 & -0.049 & 0.395 & NA & 0.017 & 0.001 & 0.104 &
+0.001 & 0.276 & 0.250 & 0.001 & 0.003\tabularnewline
+Mayu Island Maluku Sea & -0.002 & 0.249 & -0.095 & 0.882 & 0.693 &
+-0.008 & 0.979 & -0.136 & 0.163 & 0.703 & 0.554 & 0.296 & 0.972 & 0.564
+& 0.148 & 0.898 & -0.047 & 0.810 & 0.592 & 0.689 & 0.942 & 0.310 & NA &
+0.001 & 0.001 & 0.001 & 0.014 & 0.009 & 0.001 & 0.955\tabularnewline
+Midway & 0.751 & 0.471 & 0.824 & -0.019 & 0.844 & 0.713 & 0.257 & 0.889
+& 0.515 & 0.017 & 0.358 & 0.569 & 0.333 & 0.068 & 0.673 & 0.018 & 0.841
+& -0.009 & 0.345 & 0.251 & 0.176 & 0.417 & 0.852 & NA & 0.709 & 0.001 &
+0.001 & 0.001 & 0.785 & 0.001\tabularnewline
+Niihau & 0.732 & 0.339 & 0.868 & -0.027 & 0.928 & 0.679 & 0.325 & 0.956
+& 0.385 & -0.068 & 0.239 & 0.481 & 0.445 & -0.049 & 0.592 & -0.065 &
+0.866 & -0.043 & 0.180 & 0.086 & 0.078 & 0.230 & 0.960 & -0.061 & NA &
+0.014 & 0.072 & 0.133 & 0.427 & 0.001\tabularnewline
+Oahu & 0.800 & 0.503 & 0.895 & 0.289 & 0.929 & 0.739 & -0.042 & 0.946 &
+0.510 & 0.146 & 0.395 & 0.613 & 0.039 & 0.069 & 0.744 & 0.152 & 0.893 &
+0.207 & 0.306 & 0.407 & 0.046 & 0.463 & 0.937 & 0.282 & 0.326 & NA &
+0.001 & 0.007 & 0.001 & 0.001\tabularnewline
+Ogasawara & 0.211 & -0.001 & 0.283 & 0.424 & 0.296 & 0.220 & 0.302 &
+0.497 & 0.001 & 0.318 & 0.030 & 0.022 & 0.494 & 0.115 & 0.062 & 0.379 &
+0.394 & 0.323 & -0.050 & 0.008 & 0.347 & -0.007 & 0.330 & 0.404 & 0.254
+& 0.371 & NA & 0.573 & 0.001 & 0.002\tabularnewline
+Palmyra & 0.277 & 0.045 & 0.321 & 0.338 & 0.312 & 0.305 & 0.155 & 0.537
+& 0.042 & 0.267 & 0.020 & 0.075 & 0.361 & 0.074 & 0.123 & 0.274 & 0.435
+& 0.243 & -0.088 & -0.023 & 0.220 & 0.029 & 0.374 & 0.326 & 0.131 &
+0.230 & -0.047 & NA & 0.001 & 0.001\tabularnewline
+Pearl \& Hermes & 0.728 & 0.454 & 0.796 & -0.013 & 0.814 & 0.698 & 0.232
+& 0.866 & 0.499 & -0.009 & 0.337 & 0.544 & 0.310 & 0.064 & 0.643 & 0.020
+& 0.819 & -0.023 & 0.318 & 0.230 & 0.176 & 0.401 & 0.822 & -0.016 &
+-0.028 & 0.254 & 0.389 & 0.316 & NA & 0.001\tabularnewline
+Pulau Weh Aceh & 0.031 & 0.288 & -0.059 & 0.857 & -0.129 & 0.059 & 0.891
+& 0.021 & 0.207 & 0.720 & 0.558 & 0.318 & 0.927 & 0.593 & 0.155 & 0.862
+& -0.047 & 0.796 & 0.577 & 0.647 & 0.880 & 0.347 & -0.065 & 0.835 &
+0.863 & 0.889 & 0.375 & 0.421 & 0.813 & NA\tabularnewline
+\#Saving as table & & & & & & & & & & & & & & & & & & & & & & & & & & &
+& & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairwise_phi }\OperatorTok{%>%}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr@{}}
+\toprule
+& Alam Kotok Pulau Seribu & Bunaken-Liang Beach & Eastern Australia &
+French Frigate & Gili Trawagan Lombok & Halmahera & Hilo & Ishigaki &
+Jarvis & Johnston & Karang Congkak & Karimunjawa-Pulau Tengah & Kauai &
+Kingman & Kodingarengkeke Makassar & Kona & Kukusan Waiciciu Flores &
+Kure & Kwajalein & Lahewa Nias & Laysan & Majuro & Mayu Island Maluku
+Sea & Midway & Niihau & Oahu & Ogasawara & Palmyra & Pearl \& Hermes &
+Pulau Weh Aceh\tabularnewline
+\midrule
+\endhead
+Alam Kotok Pulau Seribu & NA & 0.0820000 & 0.4230000 & 0.0010000 &
+0.2760000 & 0.7150000 & 0.0010000 & 0.0010000 & 0.1300000 & 0.0010000 &
+0.0030000 & 0.0580000 & 0.0010000 & 0.0010000 & 0.3410000 & 0.0010000 &
+0.1070000 & 0.0010000 & 0.0100000 & 0.0120000 & 0.0010000 & 0.0560000 &
+0.4160000 & 0.0010000 & 0.0020000 & 0.0010000 & 0.0120000 & 0.0100000 &
+0.0010000 & 0.176\tabularnewline
+Bunaken-Liang Beach & 0.1178290 & NA & 0.0290000 & 0.0010000 & 0.0910000
+& 0.0260000 & 0.0040000 & 0.0010000 & 0.5240000 & 0.0010000 & 0.1640000
+& 0.3950000 & 0.0010000 & 0.0110000 & 0.4160000 & 0.0010000 & 0.0030000
+& 0.0010000 & 0.2050000 & 0.3430000 & 0.0010000 & 0.7750000 & 0.0120000
+& 0.0010000 & 0.0360000 & 0.0010000 & 0.3340000 & 0.1630000 & 0.0010000
+& 0.006\tabularnewline
+Eastern Australia & -0.0221627 & 0.2100064 & NA & 0.0010000 & 0.8110000
+& 0.3240000 & 0.0010000 & 0.0930000 & 0.0940000 & 0.0010000 & 0.0010000
+& 0.0240000 & 0.0010000 & 0.0010000 & 0.2010000 & 0.0010000 & 0.6810000
+& 0.0010000 & 0.0140000 & 0.0010000 & 0.0010000 & 0.0320000 & 1.0000000
+& 0.0010000 & 0.0010000 & 0.0010000 & 0.0130000 & 0.0130000 & 0.0010000
+& 0.785\tabularnewline
+French Frigate & 0.7737227 & 0.4934201 & 0.8493086 & NA & 0.0010000 &
+0.0010000 & 0.0030000 & 0.0010000 & 0.0010000 & 0.1930000 & 0.0010000 &
+0.0010000 & 0.0010000 & 0.0130000 & 0.0010000 & 0.3750000 & 0.0010000 &
+0.2400000 & 0.0040000 & 0.0090000 & 0.0030000 & 0.0010000 & 0.0010000 &
+0.6780000 & 0.5040000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.6320000 &
+0.001\tabularnewline
+Gili Trawagan Lombok & 0.0014832 & 0.2231414 & -0.0938479 & 0.8708312 &
+NA & 0.2240000 & 0.0020000 & 1.0000000 & 0.1870000 & 0.0010000 &
+0.0090000 & 0.0850000 & 0.0010000 & 0.0040000 & 0.1100000 & 0.0010000 &
+1.0000000 & 0.0010000 & 0.0350000 & 0.0220000 & 0.0020000 & 0.1060000 &
+0.0090000 & 0.0010000 & 0.0040000 & 0.0010000 & 0.0520000 & 0.1070000 &
+0.0010000 & 0.867\tabularnewline
+Halmahera & -0.0318221 & 0.1211314 & 0.0049152 & 0.7315454 & 0.0121582 &
+NA & 0.0010000 & 0.0050000 & 0.0470000 & 0.0010000 & 0.0010000 &
+0.0450000 & 0.0010000 & 0.0010000 & 0.4650000 & 0.0010000 & 0.0540000 &
+0.0010000 & 0.0040000 & 0.0060000 & 0.0010000 & 0.0360000 & 0.3500000 &
+0.0010000 & 0.0020000 & 0.0010000 & 0.0050000 & 0.0020000 & 0.0010000 &
+0.103\tabularnewline
+Hilo & 0.7774987 & 0.4339965 & 0.9056411 & 0.2738125 & 0.9669884 &
+0.7152044 & NA & 0.0010000 & 0.0040000 & 0.0730000 & 0.0060000 &
+0.0010000 & 0.5600000 & 0.2010000 & 0.0020000 & 0.0410000 & 0.0010000 &
+0.0100000 & 0.0980000 & 0.0130000 & 0.6560000 & 0.0170000 & 0.0010000 &
+0.0010000 & 0.0170000 & 0.6780000 & 0.0200000 & 0.0910000 & 0.0040000 &
+0.001\tabularnewline
+Ishigaki & 0.1666238 & 0.4251999 & 0.0753675 & 0.9106119 & -0.1616864 &
+0.1525149 & 0.9677807 & NA & 0.0010000 & 0.0010000 & 0.0010000 &
+0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0840000 &
+0.0010000 & 0.0010000 & 0.0020000 & 0.0010000 & 0.0010000 & 1.0000000 &
+0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 &
+0.176\tabularnewline
+Jarvis & 0.0623314 & -0.0209464 & 0.1254442 & 0.5313442 & 0.1379654 &
+0.0838881 & 0.4428853 & 0.3350623 & NA & 0.0010000 & 0.0830000 &
+0.3380000 & 0.0010000 & 0.0020000 & 0.4370000 & 0.0010000 & 0.0160000 &
+0.0010000 & 0.2110000 & 0.1320000 & 0.0010000 & 0.4070000 & 0.0390000 &
+0.0010000 & 0.0310000 & 0.0010000 & 0.2640000 & 0.1920000 & 0.0010000 &
+0.013\tabularnewline
+Johnston & 0.6289554 & 0.3705961 & 0.6741698 & 0.0240850 & 0.6747041 &
+0.6345722 & 0.0901173 & 0.7838422 & 0.4226078 & NA & 0.0020000 &
+0.0010000 & 0.0010000 & 0.0480000 & 0.0010000 & 0.2940000 & 0.0010000 &
+0.7360000 & 0.0100000 & 0.0630000 & 0.0540000 & 0.0010000 & 0.0010000 &
+0.2170000 & 0.7710000 & 0.0010000 & 0.0010000 & 0.0020000 & 0.5090000 &
+0.001\tabularnewline
+Karang Congkak & 0.3854305 & 0.0560977 & 0.4881994 & 0.3882295 &
+0.5067575 & 0.3689775 & 0.3279599 & 0.6867621 & 0.1185758 & 0.2247585 &
+NA & 0.1240000 & 0.0010000 & 0.1230000 & 0.0370000 & 0.0010000 &
+0.0010000 & 0.0010000 & 0.3780000 & 0.4700000 & 0.0010000 & 0.2940000 &
+0.0010000 & 0.0010000 & 0.0600000 & 0.0010000 & 0.2110000 & 0.2390000 &
+0.0010000 & 0.001\tabularnewline
+Karimunjawa-Pulau Tengah & 0.1240699 & -0.0203325 & 0.2361007 &
+0.5969887 & 0.2697450 & 0.1123484 & 0.5562732 & 0.4791684 & -0.0024551 &
+0.4280496 & 0.0682343 & NA & 0.0010000 & 0.0020000 & 0.3890000 &
+0.0010000 & 0.0010000 & 0.0010000 & 0.1200000 & 0.1010000 & 0.0010000 &
+0.3560000 & 0.0100000 & 0.0010000 & 0.0120000 & 0.0010000 & 0.2290000 &
+0.0990000 & 0.0010000 & 0.004\tabularnewline
+Kauai & 0.8571566 & 0.6073335 & 0.9393003 & 0.3625535 & 0.9684152 &
+0.7933519 & -0.0241413 & 0.9698798 & 0.6074541 & 0.1857300 & 0.5276696 &
+0.7118716 & NA & 0.0010000 & 0.0010000 & 0.0020000 & 0.0010000 &
+0.0010000 & 0.0030000 & 0.0010000 & 0.4740000 & 0.0010000 & 0.0010000 &
+0.0010000 & 0.0020000 & 0.1170000 & 0.0010000 & 0.0040000 & 0.0010000 &
+0.001\tabularnewline
+Kingman & 0.4727105 & 0.1816861 & 0.5293198 & 0.0969566 & 0.5351758 &
+0.4830515 & 0.0323916 & 0.6763772 & 0.2281627 & 0.0584536 & 0.0548160 &
+0.2362159 & 0.1507839 & NA & 0.0040000 & 0.1060000 & 0.0010000 &
+0.1960000 & 0.3700000 & 0.4480000 & 0.1340000 & 0.0470000 & 0.0010000 &
+0.0160000 & 0.6020000 & 0.0510000 & 0.0340000 & 0.0730000 & 0.0200000 &
+0.001\tabularnewline
+Kodingarengkeke Makassar & -0.0333820 & -0.0251511 & 0.0751442 &
+0.7016163 & 0.1112358 & -0.0357063 & 0.6909077 & 0.3610399 & -0.0367066
+& 0.5086327 & 0.2033739 & -0.0125484 & 0.8286647 & 0.3240279 & NA &
+0.0010000 & 0.0260000 & 0.0010000 & 0.1180000 & 0.1220000 & 0.0010000 &
+0.3680000 & 0.1740000 & 0.0010000 & 0.0060000 & 0.0010000 & 0.1530000 &
+0.1400000 & 0.0010000 & 0.043\tabularnewline
+Kona & 0.7698530 & 0.4673833 & 0.8557041 & 0.0004401 & 0.8818363 &
+0.7226426 & 0.1354914 & 0.9220293 & 0.4989834 & 0.0113463 & 0.3531432 &
+0.5770880 & 0.2258151 & 0.0508044 & 0.6913474 & NA & 0.0010000 &
+0.3050000 & 0.0090000 & 0.0200000 & 0.1290000 & 0.0030000 & 0.0010000 &
+0.2280000 & 0.6890000 & 0.0050000 & 0.0010000 & 0.0060000 & 0.2090000 &
+0.001\tabularnewline
+Kukusan Waiciciu Flores & 0.0573693 & 0.3100889 & -0.0430845 & 0.8613907
+& -0.1448884 & 0.0881207 & 0.8935838 & 0.0282870 & 0.2274377 & 0.7267721
+& 0.5723100 & 0.3427205 & 0.9297610 & 0.6036773 & 0.1844545 & 0.8656209
+& NA & 0.0010000 & 0.0030000 & 0.0040000 & 0.0010000 & 0.0040000 &
+0.8900000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.0010000 &
+0.0010000 & 0.539\tabularnewline
+Kure & 0.6973866 & 0.3982275 & 0.7716408 & 0.0162271 & 0.7872685 &
+0.6697615 & 0.1694796 & 0.8633365 & 0.4401431 & -0.0268498 & 0.2798129 &
+0.4895351 & 0.2590104 & 0.0178016 & 0.5914169 & 0.0084395 & 0.8020085 &
+NA & 0.0050000 & 0.0210000 & 0.0200000 & 0.0010000 & 0.0010000 &
+0.5320000 & 0.5130000 & 0.0010000 & 0.0010000 & 0.0050000 & 0.7780000 &
+0.001\tabularnewline
+Kwajalein & 0.3857015 & 0.0383215 & 0.4903155 & 0.3750340 & 0.4956620 &
+0.3745840 & 0.2299125 & 0.7299819 & 0.0518445 & 0.2091975 & -0.0169745 &
+0.0959629 & 0.4870073 & -0.0048229 & 0.1824680 & 0.3141735 & 0.5886033 &
+0.2434243 & NA & 0.4740000 & 0.0230000 & 0.3150000 & 0.0020000 &
+0.0020000 & 0.0880000 & 0.0140000 & 0.4700000 & 0.7390000 & 0.0010000 &
+0.001\tabularnewline
+Lahewa Nias & 0.4484116 & 0.0357496 & 0.5827587 & 0.2930382 & 0.5857906
+& 0.4195539 & 0.3163737 & 0.7998252 & 0.1149783 & 0.1299256 & -0.0199880
+& 0.1435261 & 0.5769859 & -0.0244631 & 0.2163304 & 0.2743909 & 0.6578634
+& 0.1826388 & -0.0493226 & NA & 0.0070000 & 0.4770000 & 0.0020000 &
+0.0120000 & 0.3340000 & 0.0050000 & 0.3530000 & 0.3610000 & 0.0060000 &
+0.003\tabularnewline
+Laysan & 0.7777652 & 0.4572617 & 0.8822407 & 0.1932517 & 0.9214233 &
+0.7250326 & -0.0474601 & 0.9493787 & 0.4747568 & 0.0784862 & 0.3560555 &
+0.5742888 & -0.0125909 & 0.0532024 & 0.6939503 & 0.0597619 & 0.8827858 &
+0.1176267 & 0.2783396 & 0.3111368 & NA & 0.0030000 & 0.0010000 &
+0.0040000 & 0.2050000 & 0.1520000 & 0.0010000 & 0.0330000 & 0.0060000 &
+0.001\tabularnewline
+Majuro & 0.1657294 & -0.0611391 & 0.2546224 & 0.4422130 & 0.2458158 &
+0.1767915 & 0.3623977 & 0.4992494 & -0.0080364 & 0.3167434 & 0.0064427 &
+-0.0114520 & 0.5847166 & 0.1258064 & 0.0024411 & 0.4097399 & 0.3641480 &
+0.3396920 & -0.0097479 & -0.0493172 & 0.3953751 & NA & 0.0170000 &
+0.0010000 & 0.1040000 & 0.0010000 & 0.2760000 & 0.2500000 & 0.0010000 &
+0.003\tabularnewline
+Mayu Island Maluku Sea & -0.0015084 & 0.2490399 & -0.0952850 & 0.8823999
+& 0.6933962 & -0.0080901 & 0.9785842 & -0.1355284 & 0.1631189 &
+0.7028044 & 0.5538599 & 0.2955387 & 0.9716625 & 0.5639688 & 0.1482391 &
+0.8981180 & -0.0472008 & 0.8101389 & 0.5920378 & 0.6894745 & 0.9416847 &
+0.3102759 & NA & 0.0010000 & 0.0010000 & 0.0010000 & 0.0140000 &
+0.0090000 & 0.0010000 & 0.955\tabularnewline
+Midway & 0.7512104 & 0.4707302 & 0.8237729 & -0.0188230 & 0.8441343 &
+0.7132074 & 0.2568288 & 0.8885397 & 0.5153912 & 0.0168417 & 0.3577009 &
+0.5692682 & 0.3332185 & 0.0679286 & 0.6728738 & 0.0181427 & 0.8408446 &
+-0.0085499 & 0.3449259 & 0.2512966 & 0.1756302 & 0.4165430 & 0.8521781 &
+NA & 0.7090000 & 0.0010000 & 0.0010000 & 0.0010000 & 0.7850000 &
+0.001\tabularnewline
+Niihau & 0.7315724 & 0.3390361 & 0.8675588 & -0.0267744 & 0.9283679 &
+0.6789413 & 0.3251610 & 0.9564325 & 0.3849081 & -0.0681705 & 0.2385142 &
+0.4806684 & 0.4447555 & -0.0494861 & 0.5923047 & -0.0645348 & 0.8660412
+& -0.0432937 & 0.1799200 & 0.0860984 & 0.0780751 & 0.2301440 & 0.9596547
+& -0.0611578 & NA & 0.0140000 & 0.0720000 & 0.1330000 & 0.4270000 &
+0.001\tabularnewline
+Oahu & 0.8001044 & 0.5027599 & 0.8948147 & 0.2893939 & 0.9286548 &
+0.7387198 & -0.0418814 & 0.9460359 & 0.5097468 & 0.1462037 & 0.3945945 &
+0.6130913 & 0.0389751 & 0.0689355 & 0.7436091 & 0.1522846 & 0.8932379 &
+0.2068366 & 0.3056530 & 0.4067253 & 0.0455364 & 0.4626592 & 0.9372963 &
+0.2818926 & 0.3256940 & NA & 0.0010000 & 0.0070000 & 0.0010000 &
+0.001\tabularnewline
+Ogasawara & 0.2113985 & -0.0009241 & 0.2825291 & 0.4244549 & 0.2958149 &
+0.2201131 & 0.3024937 & 0.4972093 & 0.0012997 & 0.3180061 & 0.0301145 &
+0.0222246 & 0.4944216 & 0.1153277 & 0.0616572 & 0.3790974 & 0.3941629 &
+0.3228990 & -0.0503388 & 0.0075806 & 0.3474641 & -0.0066536 & 0.3302781
+& 0.4037528 & 0.2543707 & 0.3705777 & NA & 0.5730000 & 0.0010000 &
+0.002\tabularnewline
+Palmyra & 0.2765968 & 0.0451611 & 0.3207567 & 0.3379185 & 0.3117018 &
+0.3054226 & 0.1549063 & 0.5373403 & 0.0418095 & 0.2672838 & 0.0199183 &
+0.0748973 & 0.3611627 & 0.0744531 & 0.1229918 & 0.2736032 & 0.4348762 &
+0.2429795 & -0.0880966 & -0.0226543 & 0.2200571 & 0.0291031 & 0.3737111
+& 0.3261165 & 0.1306871 & 0.2296987 & -0.0466210 & NA & 0.0010000 &
+0.001\tabularnewline
+Pearl \& Hermes & 0.7283275 & 0.4544529 & 0.7959186 & -0.0126552 &
+0.8140281 & 0.6982665 & 0.2324943 & 0.8663334 & 0.4994431 & -0.0091492 &
+0.3368893 & 0.5442210 & 0.3101100 & 0.0636462 & 0.6432660 & 0.0200997 &
+0.8189656 & -0.0230789 & 0.3177814 & 0.2303366 & 0.1755785 & 0.4014286 &
+0.8221594 & -0.0164125 & -0.0278254 & 0.2539350 & 0.3888193 & 0.3164665
+& NA & 0.001\tabularnewline
+Pulau Weh Aceh & 0.0308617 & 0.2881930 & -0.0587967 & 0.8569553 &
+-0.1285803 & 0.0591169 & 0.8905901 & 0.0211542 & 0.2068377 & 0.7199521 &
+0.5583865 & 0.3183473 & 0.9269630 & 0.5930444 & 0.1545437 & 0.8615069 &
+-0.0474357 & 0.7962025 & 0.5767540 & 0.6471289 & 0.8796259 & 0.3465517 &
+-0.0650785 & 0.8353882 & 0.8630938 & 0.8893762 & 0.3750180 & 0.4211569 &
+0.8129527 & NA\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phiST<-pairwise_phi}
+\NormalTok{phiST[}\KeywordTok{upper.tri}\NormalTok{(phiST)] =}\StringTok{ }\KeywordTok{t}\NormalTok{(phiST)[}\KeywordTok{upper.tri}\NormalTok{(phiST)]}
+\KeywordTok{heatmap}\NormalTok{(phiST, }\DataTypeTok{margins =} \KeywordTok{c}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{11}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Holothuria_test1_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{divs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                          holothuria_nucdivs holothuria_hapdivs
+## French Frigate                  0.008155403          0.8809524
+## Hilo                            0.004071447          0.8055556
+## Jarvis                          0.012614582          0.6521739
+## Johnston                        0.013144208          0.8123077
+## Kauai                           0.003293389          0.7471264
+## Kingman                         0.014238279          0.8974359
+## Kona                            0.007756389          0.8666667
+## Kure                            0.009605771          0.8537549
+## Kwajalein                       0.012608353          0.7500000
+## Laysan                          0.006411634          0.8939394
+## Majuro                          0.011772076          0.7582418
+## Midway                          0.008367602          0.8386555
+## Niihau                          0.007092199          0.9000000
+## Oahu                            0.005156405          0.7898551
+## Ogasawara                       0.013002364          0.6578947
+## Ishigaki                        0.002775208          0.5072464
+## Palmyra                         0.015504334          0.7583333
+## Pearl & Hermes                  0.008568853          0.7882883
+## Mayu Island Maluku Sea          0.000000000          0.0000000
+## Halmahera                       0.006802682          0.7524390
+## Pulau Weh Aceh                  0.003969143          0.5736842
+## Alam Kotok Pulau Seribu         0.006574356          0.6238095
+## Bunaken-Liang Beach             0.012495778          0.7380952
+## Kukusan Waiciciu Flores         0.002902375          0.2842105
+## Karimunjawa-Pulau Tengah        0.011109566          0.7908497
+## Karang Congkak                  0.011055486          0.6397059
+## Gili Trawagan Lombok            0.001418440          0.6000000
+## Lahewa Nias                     0.010711375          0.6666667
+## Kodingarengkeke Makassar        0.008405569          0.3555556
+## Eastern Australia               0.004298302          0.6181818
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{holothuria_hapdivs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           French Frigate                     Hilo                   Jarvis 
+##                0.8809524                0.8055556                0.6521739 
+##                 Johnston                    Kauai                  Kingman 
+##                0.8123077                0.7471264                0.8974359 
+##                     Kona                     Kure                Kwajalein 
+##                0.8666667                0.8537549                0.7500000 
+##                   Laysan                   Majuro                   Midway 
+##                0.8939394                0.7582418                0.8386555 
+##                   Niihau                     Oahu                Ogasawara 
+##                0.9000000                0.7898551                0.6578947 
+##                 Ishigaki                  Palmyra           Pearl & Hermes 
+##                0.5072464                0.7583333                0.7882883 
+##   Mayu Island Maluku Sea                Halmahera           Pulau Weh Aceh 
+##                0.0000000                0.7524390                0.5736842 
+##  Alam Kotok Pulau Seribu      Bunaken-Liang Beach  Kukusan Waiciciu Flores 
+##                0.6238095                0.7380952                0.2842105 
+## Karimunjawa-Pulau Tengah           Karang Congkak     Gili Trawagan Lombok 
+##                0.7908497                0.6397059                0.6000000 
+##              Lahewa Nias Kodingarengkeke Makassar        Eastern Australia 
+##                0.6666667                0.3555556                0.6181818
+\end{verbatim}
+
+\hypertarget{organized-table-on-excel-holothuria_table}{%
+\section{Organized table on excel
+holothuria\_table}\label{organized-table-on-excel-holothuria_table}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#colnames(holothuria_table) <- c(" ", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")}
+\CommentTok{#diversities<-list(holothuria_table)}
+\CommentTok{#diversities}
+\CommentTok{#kable(diversities, digits=3)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}
