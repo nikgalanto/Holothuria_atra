@@ -40,7 +40,7 @@ holothuria_event_info <-holothuria_metadata$Event[,c("locality", "country", "dec
 kable(holothuria_event_info)
 ```
 
-\#Lumping and cleaning locality names
+# Lumping and cleaning locality names
 
 ```{r}
 #Lump Halmahera samples together
@@ -78,7 +78,7 @@ names(holothuria_CO1) <- str_replace(string=names(holothuria_CO1),
                                      pattern=".+\\[tissueID = (.+?)\\].+", replacement = "\\1")
 ```
 
-\#Sequence alignment
+# Sequence alignment
 
 ```{r}
 #Align the data to ensure that each site is homologous
@@ -139,12 +139,12 @@ holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
 plot(holothuria_net,size=attr(holothuria_net, "freq"), scale.ratio=0.5, pie=holo_ind.hap, legend=F, labels=F, threshold=0, show.mutation=2, fast=T)
 ```
 
-\#Prepping for PopArt
+# Prepping for PopArt
 
 ```{r}
 hapseqs <- b[]
-write.nexus.data(hapseqs, file = "holothuria_haplotypes.nex", interleaved = F)
-write.csv(holo_ind.hap, file = "holothuria_map3.csv", quote = F)
+write.nexus.data(hapseqs, file = "holothuria_haplotypes4.nex", interleaved = F)
+write.csv(holo_ind.hap, file = "holothuria_map4.csv", quote = F)
 #Do I need to do below? It classifies the oceans
 #write.csv(holo_ind.hap2, file="holothuria_map_IP.csv", quote = F)
 holothuria_event_info <- unique(holothuria_flat[,c("locality",
@@ -152,9 +152,9 @@ holothuria_event_info <- unique(holothuria_flat[,c("locality",
 write.csv(holothuria_event_info, file = "holothuria_event_metadata.csv", quote = F)
 ```
 
-\#\#Diversity statistics
+# Diversity statistics
 
-\#Haplotype diversity
+## Haplotype diversity
 
 ```{r}
 #Create a copy of dataset
@@ -177,13 +177,15 @@ holothuria_hapdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun 
 holothuria_hapdivs
 ```
 
-\#Nucleotide diversity
+# Nucleotide diversity
 
 ```{r}
 holothuria_nucdivs <- stratastat(holothuria_CO1_copy, pop = holothuria_pop, fun = nuc.div)
 holothuria_nucdivs
 
 divs <- cbind(holothuria_nucdivs, holothuria_hapdivs)
+
+write.csv(divs,"Hap_Nuc_Diversities.csv")
 
 ```
 
@@ -197,7 +199,6 @@ holothuria_z
 
 # PhiST table
 
-
 ```{r}
 pairwise <- pairwiseTest(holothuria_z)
 
@@ -206,7 +207,9 @@ pairwise_phi <- pairwiseMatrix(pairwise, stat="PHIst")
 #PhiST in lower triangle, p-value in upper triangle
 kable(pairwise_phi, digits=3)
 ```
-#Saving as table
+
+# Saving as table
+
 ```{r}
 library(kableExtra)
 
@@ -231,19 +234,18 @@ holothuria_hapdivs
 
 # Organized table on excel holothuria_table
 
-```{r}
-colnames(holothuria_table) <- c(" ", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
-diversities<-list(holothuria_table)
+{r}
+colnames(holothuria_table) \<- c(" ", "\# Samples", "\# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
+diversities\<-list(holothuria_table)
 diversities
 kable(diversities, digits=3)
 
 
-kable(diversities, digits = 3, "html") %>%
-  kable_styling("striped") %>%
-  as_image()
+kable(diversities, digits = 3, "html") %\>%
+kable_styling("striped") %\>%
+as_image()
 
-#Will not save!
-```
+\#Will not save!
 
 ```{r}
 #Doing it manually
