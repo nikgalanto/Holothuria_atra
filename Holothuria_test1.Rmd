@@ -116,10 +116,10 @@ holothuria_CO1 <- holothuria_CO1[order(rownames(holothuria_CO1)),]
 #Make a list of populations that were sampled with locality and country names
 holothuria_pop <- holothuria_flat$locality
 #write out population map for editing
-write.csv(holothuria_pop,"Holothuria_atra_Population_Map.csv", quote=F,row.names = F)
+#write.csv(holothuria_pop,"Holothuria_atra_Population_Map.csv", quote=F,row.names = F)
 #read in edited population map
-#holothuria_pop_maps <- read.csv("Holothuria_atra_Population_Map.csv")
-#holothuria_pop <- holothuria_pop_maps$regions
+holothuria_pop_maps <- read.csv("Holothuria_atra_Population_Map.csv")
+holothuria_pop <- holothuria_pop_maps$Region
 
 a <- dist.dna(holothuria_CO1)
 b <- pegas::haplotype(holothuria_CO1)
@@ -131,7 +131,7 @@ holothuria_net <- pegas::haploNet(b)
 #Make a table of which haplotypes occur in which populations
 c <-stack(setNames(attr(b, "index"), rownames(b)))
 c <-c[order(c$values),]
-holo_ind.hap<-table(hap=c$ind, holothuria_pop=holothuria_pop)
+holo_ind.hap<-table(hap=c$ind, pop=holothuria_pop)
 
 
 
@@ -206,6 +206,7 @@ pairwise_phi <- pairwiseMatrix(pairwise, stat="PHIst")
 
 #PhiST in lower triangle, p-value in upper triangle
 kable(pairwise_phi, digits=3)
+write.table(pairwise_phi, file="PhiST_Table.csv", row.names=F, sep=",")
 ```
 
 # Saving as table
@@ -213,9 +214,10 @@ kable(pairwise_phi, digits=3)
 ```{r}
 library(kableExtra)
 
-kable(pairwise_phi, digits = 3, "html", align=c("c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c", "c", "c","c", "c", "c", "c")) %>%
-  kable_styling("striped") %>%
-  as_image()
+kable(pairwise_phi, digits = 3, "html", align=c("c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c","c", "c", "c", "c", "c", "c","c", "c", "c", "c"))
+#kable_styling("striped") %>%
+#as_image()
+
 ```
 
 ```{r}
@@ -234,20 +236,20 @@ holothuria_hapdivs
 
 # Organized table on excel holothuria_table
 
-{r}
-colnames(holothuria_table) \<- c(" ", "\# Samples", "\# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
-diversities\<-list(holothuria_table)
+```{r}
+colnames(holothuria_table) <- c(" ", "# Samples", "# Haplotypes", "Nucleotide Diversity", "Haplotype Diversity")
+diversities<-list(holothuria_table)
 diversities
 kable(diversities, digits=3)
 
-
+```
 kable(diversities, digits = 3, "html") %\>%
 kable_styling("striped") %\>%
 as_image()
 
-\#Will not save!
+#Will not save!
 
-```{r}
+{r}
 #Doing it manually
 stratum <-c("Alam Kotok Pulau Seribu", "Bunaken-Liang Beach", "Eastern Australia", "French Frigate", "Gili Trawagan Lombok", "Halmahera", "Hilo", "Ishigaki", "Jarvis", "Johnston", "Karang Congkak", "Karimunjawa-Pulau Tengah", "Kauai", "Kingman", "Kodingarengkeke Makassar", "Kona", "Kukusan Waiciciu Flores", "Kure", "Kwajalein", "Lahewa Nias", "Laysan", "Majuro", "Mayu Island Maluku Sea", "Midway", "Niihau", "Oahu", "Ogasawara","Palmyra", "Pearl & Hermes", "Pulau Weh Aceh")
 individuals <-c("21", "21", "11", "28", "5", "40", "9", "24", "23", "26", "17", "18", "30", "27", "10", "21", "19", "23", "9", "7", "12", "13", "13", "35", "5", "24", "20", "16", "37", "20")
